@@ -8,7 +8,7 @@ export default {
   config(_input) {
     return {
       name: "free-qr-gen",
-      region: "eu-west-2",
+      region: "us-east-1",
     };
   },
   stacks(app) {
@@ -35,6 +35,10 @@ export default {
           cdk: {
             certificate,
           },
+        },
+        environment: {
+          HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
+          BASE_URL: "https://freeqrgen.net",
         },
       });
 

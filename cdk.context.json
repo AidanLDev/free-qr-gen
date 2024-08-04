@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=136597286325:domainName=freeqrgen.net:region=eu-west-2": {
+    "Id": "/hostedzone/Z06406921CUSMSBLUDPRT",
+    "Name": "freeqrgen.net."
+  },
+  "hosted-zone:account=136597286325:domainName=freeqrgen.net:region=us-east-1": {
+    "Id": "/hostedzone/Z06406921CUSMSBLUDPRT",
+    "Name": "freeqrgen.net."
+  }
+}
