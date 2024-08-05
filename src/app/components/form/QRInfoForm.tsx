@@ -1,36 +1,38 @@
-"use client";
+'use client'
 
-import React, { useState, useRef, MutableRefObject } from "react";
-import TextInput from "@/app/components/form/TextInput";
-import QRCodeSvg from "../QRCodeSvg";
-import Button from "./Button";
+import React, { useState, useRef, MutableRefObject } from 'react'
+import TextInput from '@/app/components/form/TextInput'
+import QRCodeSvg from '../QRCodeSvg'
+import Button from './Button'
+import { toast } from 'react-toastify'
 
 export default function QRInfoForm() {
-  const [url, setUrl] = useState("");
-  const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const [url, setUrl] = useState('')
+  const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
   const handleDownloadQrCode = () => {
     if (!svgRef) {
-      return;
+      return
     }
-    const svg = svgRef.current?.querySelector("svg");
+    const svg = svgRef.current?.querySelector('svg')
     if (!svg) {
-      return;
+      return
     }
-    const svgData = new XMLSerializer().serializeToString(svg);
+    const svgData = new XMLSerializer().serializeToString(svg)
     const svgBlob = new Blob([svgData], {
-      type: "image/svg+xml;charset=utf-8",
-    });
-    const svgUrl = URL.createObjectURL(svgBlob);
+      type: 'image/svg+xml;charset=utf-8',
+    })
+    const svgUrl = URL.createObjectURL(svgBlob)
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = svgUrl;
-    downloadLink.download = "qrcode.svg";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-  };
+    const downloadLink = document.createElement('a')
+    downloadLink.href = svgUrl
+    downloadLink.download = 'qrcode.svg'
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+    toast('Downloading QR Code', { type: 'success' })
+  }
   return (
-    <div className="flex justify-evenly gap-8">
+    <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
       <TextInput
         id="url-input"
         label="Choose URL"
@@ -39,7 +41,7 @@ export default function QRInfoForm() {
       />
       <div
         className={`${
-          url ? "flex flex-col justify-center items-center gap-8" : ""
+          url ? 'flex flex-col justify-center items-center gap-8' : ''
         }`}
       >
         {url ? (
@@ -54,5 +56,5 @@ export default function QRInfoForm() {
         )}
       </div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import React from "react";
-import { QRCodeSVG } from "qrcode.react";
-import { IQrCodeSvgProps } from "@/app/types";
+import React from 'react'
+import { QRCodeSVG } from 'qrcode.react'
+import { IQrCodeSvgProps } from '@/app/types'
 
 export default function QRCodeSvg({
   url,
@@ -9,20 +9,18 @@ export default function QRCodeSvg({
   fgColour,
   image,
   imageSettings,
-  svgRef
+  svgRef,
 }: IQrCodeSvgProps) {
-  
-  const qrImageSettings = image && imageSettings ? imageSettings : undefined;
-  console.log("svgRef: ", svgRef);
+  const qrImageSettings = image && imageSettings ? imageSettings : undefined
   return (
     <div ref={svgRef}>
       <QRCodeSVG
         value={url}
         size={size || 128}
-        bgColor={bgColour || "#ffffff"}
-        fgColor={fgColour || "#000000"}
+        bgColor={bgColour || '#ffffff'}
+        fgColor={fgColour || '#000000'}
         imageSettings={qrImageSettings}
       />
     </div>
-  );
+  )
 }
