@@ -8,9 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npx sst deploy"
+    "deploy": "npx sst deploy",
+    "nextDev": "next dev"
   },
   "dependencies": {
+    "date-fns": "^3.6.0",
     "next": "14.2.5",
     "qrcode.react": "^3.1.0",
     "react": "^18",

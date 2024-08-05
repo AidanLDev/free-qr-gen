@@ -1,6 +1,6 @@
 // Interfaces
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, MutableRefObject, SetStateAction } from "react";
 
 export interface ITextInput {
   id: string;
@@ -11,4 +11,34 @@ export interface ITextInput {
   inputClassName?: string;
   containerClassName?: string;
   setFocus?: Dispatch<SetStateAction<boolean>>;
+}
+
+interface IImageSettings {
+  src: string;
+  x?: number;
+  y?: number;
+  center?: boolean;
+  excavate: boolean;
+  height: number;
+  width: number;
+}
+
+export interface IQrCodeSvgProps {
+  url: string;
+  size?: number;
+  bgColour?: string;
+  fgColour?: string;
+  image?: boolean;
+  imageSettings?: IImageSettings;
+  svgRef: MutableRefObject<HTMLDivElement | null> 
+}
+
+export interface IButtonProps {
+  label: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  variant?: "primary" | "secondary";
+  type?: "submit";
+  fullWidth?: boolean;
+  className?: string;
+  disable?: boolean;
 }
