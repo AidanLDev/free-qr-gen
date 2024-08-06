@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import Providerse from './Providers'
+import Providers from './Providers'
+import { ToastContainer } from 'react-toastify'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Free QR Code Generator',
   description:
     'Customise and generate a QR code for free! Download and share your links in a convenient fun way.',
+  applicationName: 'Free QR Gen',
   keywords: [
     'QR code generator',
     'Custom QR codes',
@@ -42,6 +44,26 @@ export const metadata: Metadata = {
       },
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1,
+    googleBot: 'index, follow',
+  },
+  verification: {
+    google:
+      'google-site-verification=kyNk7PgQmwiuEPtm2DX7tKsAECvYMbcNNnRTVg9fUc4',
+  },
+  icons: {
+    icon: [
+      {
+        url: 'https://freeqrgen.net/favicon.ico',
+        type: 'image/x-icon',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -51,9 +73,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providerse>
-        <body className={inter.className}>{children}</body>
-      </Providerse>
+      <Providers>
+        <body className={inter.className}>
+          <ToastContainer />
+          {children}
+        </body>
+      </Providers>
     </html>
   )
 }
