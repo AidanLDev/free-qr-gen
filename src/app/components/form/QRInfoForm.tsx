@@ -7,14 +7,19 @@ import Button from './Button'
 import { toast } from 'react-toastify'
 import Collapsible from 'react-collapsible'
 import { FaChevronDown } from 'react-icons/fa'
-import Input from '@/app/components/form/TextInput'
 import NumberInput from './NumberInput'
+import { ChromePicker } from 'react-color'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
   const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
   const [size, setSize] = useState(128)
+  const [backgroundColour, setBackgroundColour] = useState('#000')
+  const [foregroundColour, setForegroundColour] = useState('#FFF')
+
+  console.log('backgroundColour: ', backgroundColour)
+  console.log('foregroundColour: ', foregroundColour)
 
   const handleDownloadQrCode = () => {
     if (!svgRef) {
@@ -61,6 +66,12 @@ export default function QRInfoForm() {
         value={size}
         setValue={setSize}
       />
+      <div>
+        <label>Background Colour</label>
+        <ChromePicker
+         
+        />
+      </div>
     </div>
   )
 
@@ -90,7 +101,15 @@ export default function QRInfoForm() {
           setValue={setUrl}
           containerClassName="py-2"
         />
-        {url && <QRCodeSvg url={url} svgRef={svgRef} size={size} />}
+        {url && (
+          <QRCodeSvg
+            url={url}
+            svgRef={svgRef}
+            size={size}
+            fgColour={foregroundColour}
+            bgColour={backgroundColour}
+          />
+        )}
         {url && (
           <Button label="Download QR Code" onClick={handleDownloadQrCode} />
         )}
