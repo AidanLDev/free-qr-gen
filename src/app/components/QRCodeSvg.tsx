@@ -13,7 +13,7 @@ export default function QRCodeSvg({
 }: IQrCodeSvgProps) {
   const qrImageSettings = image && imageSettings ? imageSettings : undefined
   return (
-    <div ref={svgRef}>
+    <div ref={svgRef} className="self-center">
       <QRCodeSVG
         value={url}
         size={size || 128}

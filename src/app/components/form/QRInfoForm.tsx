@@ -5,10 +5,17 @@ import TextInput from '@/app/components/form/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
 import Button from './Button'
 import { toast } from 'react-toastify'
+import Collapsible from 'react-collapsible'
+import { FaChevronDown } from 'react-icons/fa'
+import Input from '@/app/components/form/TextInput'
+import NumberInput from './NumberInput'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
   const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
+  const [isOptionsOpen, setIsOptionsOpen] = useState(false)
+  const [size, setSize] = useState(128)
+
   const handleDownloadQrCode = () => {
     if (!svgRef) {
       return
@@ -31,26 +38,59 @@ export default function QRInfoForm() {
     document.body.removeChild(downloadLink)
     toast('Downloading QR Code', { type: 'success' })
   }
-  return (
-    <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
-      <TextInput
-        id="url-input"
-        label="Choose URL"
-        value={url}
-        setValue={setUrl}
-      />
+  const collapseHeader = (
+    <div className="flex justify-between p-2">
+      Customise your code!
       <div
-        className={`${
-          url ? 'flex flex-col justify-center items-center gap-8' : ''
+        className={`transform transition-transform duration-500 ${
+          isOptionsOpen ? 'rotate-180' : ''
         }`}
       >
-        {url ? (
-          <QRCodeSvg url={url} svgRef={svgRef} />
-        ) : (
-          <p className="text-l text-center text-primary">
-            Please enter the URL you want the QR code to be
-          </p>
-        )}
+        <FaChevronDown />
+      </div>
+    </div>
+  )
+
+  const customstaiseForm = (
+    <div>
+      <NumberInput
+        id="size"
+        label="size"
+        min={1}
+        max={1000}
+        value={size}
+        setValue={setSize}
+      />
+    </div>
+  )
+
+  return (
+    <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
+      <div className="sm:w-1/2 w-full text-center">
+        <Collapsible
+          trigger={collapseHeader}
+          triggerClassName="trigger-closed"
+          triggerOpenedClassName="trigger-open"
+          onOpening={() => setIsOptionsOpen(true)}
+          onClosing={() => setIsOptionsOpen(false)}
+        >
+          {customstaiseForm}
+        </Collapsible>
+        <p></p>
+      </div>
+      <div
+        className={`sm:w-1/2 w-full  ${
+          url ? 'flex flex-col justify-center gap-8' : ''
+        }`}
+      >
+        <TextInput
+          id="url-input"
+          label="Choose URL"
+          value={url}
+          setValue={setUrl}
+          containerClassName="py-2"
+        />
+        {url && <QRCodeSvg url={url} svgRef={svgRef} size={size} />}
         {url && (
           <Button label="Download QR Code" onClick={handleDownloadQrCode} />
         )}

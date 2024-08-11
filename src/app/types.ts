@@ -42,3 +42,15 @@ export interface IButtonProps {
   className?: string;
   disable?: boolean;
 }
+
+export interface INumberInputProps {
+  min?: number;
+  max?: number;
+  id: string;
+  label: string;
+  value: number;
+  setValue: Dispatch<SetStateAction<number>>;
+  inputClassName?: string;
+  containerClassName?: string;
+  setFocus?: Dispatch<SetStateAction<boolean>>;
+}
