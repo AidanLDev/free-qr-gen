@@ -17,6 +17,8 @@ export default function QRInfoForm() {
   const [size, setSize] = useState(128)
   const [backgroundColour, setBackgroundColour] = useState('#000')
   const [foregroundColour, setForegroundColour] = useState('#FFF')
+  const [bgPickerOpen, setBgPickerOpen] = useState(false)
+  const [fgPickerOpen, setFgPickerOpen] = useState(false)
 
   console.log('backgroundColour: ', backgroundColour)
   console.log('foregroundColour: ', foregroundColour)
@@ -67,10 +69,44 @@ export default function QRInfoForm() {
         setValue={setSize}
       />
       <div>
-        <label>Background Colour</label>
-        <ChromePicker
-         
-        />
+        <div onClick={() => setBgPickerOpen((prevState) => !prevState)}>
+          <TextInput
+            id="bgColour"
+            label="Background Colour"
+            setValue={setBackgroundColour}
+            value={backgroundColour}
+          />
+        </div>
+        {bgPickerOpen && (
+          <ChromePicker
+            color={backgroundColour}
+            onChangeComplete={(res) => {
+              setTimeout(() => {
+                setBackgroundColour(res.hex)
+              }, 500)
+            }}
+          />
+        )}
+      </div>
+      <div>
+        <div onClick={() => setFgPickerOpen((prevState) => !prevState)}>
+          <TextInput
+            id="bgColour"
+            label="Background Colour"
+            setValue={setForegroundColour}
+            value={foregroundColour}
+          />
+        </div>
+        {fgPickerOpen && (
+          <ChromePicker
+            color={foregroundColour}
+            onChangeComplete={(res) => {
+              setTimeout(() => {
+                setForegroundColour(res.hex)
+              }, 500)
+            }}
+          />
+        )}
       </div>
     </div>
   )
