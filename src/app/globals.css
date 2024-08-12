@@ -64,3 +64,24 @@ Copy.rotate-180 {
   border-radius: 9px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* Picker styles */
+.chrome-picker-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out,
+    max-height 0.5s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.chrome-picker-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+  max-height: 400px;
+}
+
+.chrome-picker {
+  margin: auto;
+  box-shadow: 0 0 20px rgba(214, 214, 214, 0.25) !important;
+}

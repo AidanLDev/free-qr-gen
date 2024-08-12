@@ -13,7 +13,7 @@ export interface ITextInput {
   setFocus?: Dispatch<SetStateAction<boolean>>
 }
 
-interface IImageSettings {
+export interface IImageSettings {
   src: string
   x?: number
   y?: number

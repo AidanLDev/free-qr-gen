@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, MutableRefObject } from 'react'
+import React, { useState, useRef, MutableRefObject, useCallback } from 'react'
 import TextInput from '@/app/components/form/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
 import Button from './Button'
@@ -8,7 +8,8 @@ import { toast } from 'react-toastify'
 import Collapsible from 'react-collapsible'
 import { FaChevronDown } from 'react-icons/fa'
 import NumberInput from './NumberInput'
-import { ChromePicker } from 'react-color'
+import { ChromePicker, ColorResult } from 'react-color'
+import { IImageSettings } from '@/app/types'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
@@ -19,9 +20,9 @@ export default function QRInfoForm() {
   const [foregroundColour, setForegroundColour] = useState('#FFF')
   const [bgPickerOpen, setBgPickerOpen] = useState(false)
   const [fgPickerOpen, setFgPickerOpen] = useState(false)
-
-  console.log('backgroundColour: ', backgroundColour)
-  console.log('foregroundColour: ', foregroundColour)
+  const [imgSettings, setImgSettings] = useState<IImageSettings | undefined>(
+    undefined
+  )
 
   const handleDownloadQrCode = () => {
     if (!svgRef) {
@@ -45,6 +46,18 @@ export default function QRInfoForm() {
     document.body.removeChild(downloadLink)
     toast('Downloading QR Code', { type: 'success' })
   }
+
+  const handleColorChange = useCallback(
+    (color: ColorResult, type: 'fg' | 'bg') => {
+      if (type === 'fg') {
+        setForegroundColour(color.hex)
+      } else if (type === 'bg') {
+        setBackgroundColour(color.hex)
+      }
+    },
+    []
+  )
+
   const collapseHeader = (
     <div className="flex justify-between p-2">
       Customise your code!
@@ -77,36 +90,31 @@ export default function QRInfoForm() {
             value={backgroundColour}
           />
         </div>
-        {bgPickerOpen && (
+        <div className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}>
           <ChromePicker
             color={backgroundColour}
-            onChangeComplete={(res) => {
-              setTimeout(() => {
-                setBackgroundColour(res.hex)
-              }, 500)
-            }}
+            onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
           />
-        )}
+        </div>
       </div>
       <div>
-        <div onClick={() => setFgPickerOpen((prevState) => !prevState)}>
+        <div
+          onClick={() => setFgPickerOpen((prevState) => !prevState)}
+          className="color-picker-container"
+        >
           <TextInput
-            id="bgColour"
-            label="Background Colour"
+            id="fgColour"
+            label="Foreground Colour"
             setValue={setForegroundColour}
             value={foregroundColour}
           />
         </div>
-        {fgPickerOpen && (
+        <div className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}>
           <ChromePicker
             color={foregroundColour}
-            onChangeComplete={(res) => {
-              setTimeout(() => {
-                setForegroundColour(res.hex)
-              }, 500)
-            }}
+            onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
           />
-        )}
+        </div>
       </div>
     </div>
   )
@@ -132,7 +140,7 @@ export default function QRInfoForm() {
       >
         <TextInput
           id="url-input"
-          label="Choose URL"
+          label="Choose URL for your QR code to link to"
           value={url}
           setValue={setUrl}
           containerClassName="py-2"
@@ -144,6 +152,7 @@ export default function QRInfoForm() {
             size={size}
             fgColour={foregroundColour}
             bgColour={backgroundColour}
+            imageSettings={imgSettings}
           />
         )}
         {url && (
