@@ -20,6 +20,7 @@ export default function QRCodeSvg({
         bgColor={bgColour || '#ffffff'}
         fgColor={fgColour || '#000000'}
         imageSettings={qrImageSettings}
+        includeMargin
       />
     </div>
   )

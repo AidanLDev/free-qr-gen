@@ -16,8 +16,8 @@ export default function QRInfoForm() {
   const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
   const [size, setSize] = useState(128)
-  const [backgroundColour, setBackgroundColour] = useState('#000')
-  const [foregroundColour, setForegroundColour] = useState('#FFF')
+  const [backgroundColour, setBackgroundColour] = useState('#FFF')
+  const [foregroundColour, setForegroundColour] = useState('#000')
   const [bgPickerOpen, setBgPickerOpen] = useState(false)
   const [fgPickerOpen, setFgPickerOpen] = useState(false)
   const [imgSettings, setImgSettings] = useState<IImageSettings | undefined>(
@@ -58,6 +58,27 @@ export default function QRInfoForm() {
     []
   )
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const file = event.target.files[0]
+      if (file.size > 3048576) {
+        toast('File is too large, must be smaller than 3MB', { type: 'error' })
+        return
+      }
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        if (reader && reader.result && typeof reader.result === 'string') {
+          setImgSettings({
+            height: 24,
+            width: 24,
+            src: reader.result,
+            excavate: true,
+          })
+        }
+      }
+      reader.readAsDataURL(file)
+    }
+  }
   const collapseHeader = (
     <div className="flex justify-between p-2">
       Customise your code!
@@ -72,7 +93,7 @@ export default function QRInfoForm() {
   )
 
   const customstaiseForm = (
-    <div>
+    <div className="flex flex-col gap-6 p-4">
       <NumberInput
         id="size"
         label="size"
@@ -81,7 +102,7 @@ export default function QRInfoForm() {
         value={size}
         setValue={setSize}
       />
-      <div>
+      <div className="flex flex-col gap-4">
         <div onClick={() => setBgPickerOpen((prevState) => !prevState)}>
           <TextInput
             id="bgColour"
@@ -97,7 +118,7 @@ export default function QRInfoForm() {
           />
         </div>
       </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <div
           onClick={() => setFgPickerOpen((prevState) => !prevState)}
           className="color-picker-container"
@@ -116,6 +137,16 @@ export default function QRInfoForm() {
           />
         </div>
       </div>
+      <div>
+        <label htmlFor="image-upload">Logo</label>
+        <input
+          name="Image Upload"
+          id="image-upload"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
+      </div>
     </div>
   )
 
@@ -131,13 +162,8 @@ export default function QRInfoForm() {
         >
           {customstaiseForm}
         </Collapsible>
-        <p></p>
       </div>
-      <div
-        className={`sm:w-1/2 w-full  ${
-          url ? 'flex flex-col justify-center gap-8' : ''
-        }`}
-      >
+      <div className={`sm:w-1/2 w-full  ${url ? 'flex flex-col gap-8' : ''}`}>
         <TextInput
           id="url-input"
           label="Choose URL for your QR code to link to"
