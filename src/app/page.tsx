@@ -2,6 +2,7 @@ import { format, differenceInDays } from 'date-fns'
 import QRInfoForm from './components/form/QRInfoForm'
 import { Metadata } from 'next'
 import JsonLd from './components/JsonLd'
+import Footer from './components/Footer'
 export const metadata: Metadata = {
   alternates: {
     canonical: 'https://freeqrgen.net',
@@ -38,6 +39,7 @@ export default function Home() {
         </h2>
         <QRInfoForm />
       </div>
+      <Footer />
     </main>
   )
 }
