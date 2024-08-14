@@ -17,7 +17,7 @@ export default function QRInfoForm() {
   const [url, setUrl] = useState('')
   const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
-  const [size, setSize] = useState(128)
+  const [size, setSize] = useState(300)
   const [backgroundColour, setBackgroundColour] = useState('#FFF')
   const [foregroundColour, setForegroundColour] = useState('#000')
   const [bgPickerOpen, setBgPickerOpen] = useState(false)
@@ -31,22 +31,43 @@ export default function QRInfoForm() {
       return
     }
     const svg = svgRef.current?.querySelector('svg')
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')
     if (!svg) {
+      console.error('no svg')
       return
     }
-    const svgData = new XMLSerializer().serializeToString(svg)
-    const svgBlob = new Blob([svgData], {
-      type: 'image/svg+xml;charset=utf-8',
-    })
-    const svgUrl = URL.createObjectURL(svgBlob)
 
-    const downloadLink = document.createElement('a')
-    downloadLink.href = svgUrl
-    downloadLink.download = 'qrcode.svg'
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
-    toast('Downloading QR Code', { type: 'success' })
+    if (!context) {
+      console.error('no context')
+      return
+    }
+
+    if (!size) {
+      console.error('no size')
+      return
+    }
+
+    // Set the canvas size to the full QR code size
+    canvas.width = size
+    canvas.height = size
+
+    const svgData = new XMLSerializer().serializeToString(svg)
+    const img = new Image()
+
+    img.onload = () => {
+      context.drawImage(img, 0, 0, size, size)
+
+      const pngDataUrl = canvas.toDataURL('image/png')
+      const downloadLink = document.createElement('a')
+      downloadLink.href = pngDataUrl
+      downloadLink.download = 'qrcode.png'
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
+      toast('Downloading QR Code', { type: 'success' })
+    }
+    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`
   }
 
   const handleColorChange = useCallback(
@@ -162,7 +183,7 @@ export default function QRInfoForm() {
           {customstaiseForm}
         </Collapsible>
       </div>
-      <div className={`sm:w-1/2 w-full  ${url ? 'flex flex-col gap-8' : ''}`}>
+      <div className={`sm:w-1/2 w-full mb-12  ${url ? 'flex flex-col gap-8' : ''}`}>
         <TextInput
           id="url-input"
           label="Choose URL for your QR code to link to (e.g. your-business.com)"
