@@ -15,7 +15,6 @@ export default function FeedbackForm({
 }: IFeedbackFormProps) {
   const [feedback, setFeedback] = useState('')
   const handleSubmitFeedback = async () => {
-    console.log('Submitting...', feedback)
     const sendFeedbackRes = await fetch('api/send-feedback', {
       headers: postHeader,
       method: 'POST',
@@ -23,7 +22,6 @@ export default function FeedbackForm({
         feedback,
       }),
     })
-    console.log('response: ', sendFeedbackRes)
 
     if (sendFeedbackRes.ok) {
       toast('Feedback sent, thank you for taking your time to reach out!', {
