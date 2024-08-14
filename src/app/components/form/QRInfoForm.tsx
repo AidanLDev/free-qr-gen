@@ -11,6 +11,7 @@ import NumberInput from './NumberInput'
 import { ChromePicker, ColorResult } from 'react-color'
 import { IImageSettings } from '@/app/types'
 import ImageUpload from './ImageUpload'
+import { urlRegex } from '@/app/constants/constants'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
@@ -140,7 +141,6 @@ export default function QRInfoForm() {
       </div>
       <div>
         <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
-        {/* TODO: Send set image settings to the component and have it set the obj to undefined if remove is clicked */}
         <ImageUpload
           handleImageUpload={handleImageUpload}
           setRemoveImage={setImgSettings}
@@ -165,12 +165,17 @@ export default function QRInfoForm() {
       <div className={`sm:w-1/2 w-full  ${url ? 'flex flex-col gap-8' : ''}`}>
         <TextInput
           id="url-input"
-          label="Choose URL for your QR code to link to"
+          label="Choose URL for your QR code to link to (e.g. your-business.com)"
           value={url}
           setValue={setUrl}
           containerClassName="py-2"
         />
-        {url && (
+        {url && !url.match(urlRegex) && (
+          <span className="text-secondary">
+            Please enter a valid url, for example, google.com
+          </span>
+        )}
+        {url && url.match(urlRegex) && (
           <QRCodeSvg
             url={url}
             svgRef={svgRef}
@@ -180,7 +185,7 @@ export default function QRInfoForm() {
             imageSettings={imgSettings}
           />
         )}
-        {url && (
+        {url && url.match(urlRegex) && (
           <Button label="Download QR Code" onClick={handleDownloadQrCode} />
         )}
       </div>
