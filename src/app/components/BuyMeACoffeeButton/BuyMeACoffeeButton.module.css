@@ -1,0 +1,25 @@
+.bmcButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: #40dca5;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bmcButton:hover {
+  background-color: #35b78d;
+}
+
+.bmcButton img {
+  width: 20px;
+  margin-right: 5px;
+}
