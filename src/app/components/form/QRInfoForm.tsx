@@ -10,6 +10,7 @@ import { FaChevronDown } from 'react-icons/fa'
 import NumberInput from './NumberInput'
 import { ChromePicker, ColorResult } from 'react-color'
 import { IImageSettings } from '@/app/types'
+import ImageUpload from './ImageUpload'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
@@ -138,13 +139,11 @@ export default function QRInfoForm() {
         </div>
       </div>
       <div>
-        <label htmlFor="image-upload">Logo</label>
-        <input
-          name="Image Upload"
-          id="image-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
+        <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
+        {/* TODO: Send set image settings to the component and have it set the obj to undefined if remove is clicked */}
+        <ImageUpload
+          handleImageUpload={handleImageUpload}
+          setRemoveImage={setImgSettings}
         />
       </div>
     </div>

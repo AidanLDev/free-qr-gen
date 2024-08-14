@@ -28,7 +28,6 @@ export interface IQrCodeSvgProps {
   size?: number
   bgColour?: string
   fgColour?: string
-  image?: boolean
   imageSettings?: IImageSettings
   svgRef: MutableRefObject<HTMLDivElement | null>
 }
@@ -58,4 +57,9 @@ export interface INumberInputProps {
 export interface IColourPickerProps {
   onChange: ((newColor: string) => void) | undefined
   color: string
+}
+
+export interface IImageUpload {
+  handleImageUpload: (param: any) => void
+  setRemoveImage: Dispatch<SetStateAction<IImageSettings | undefined>>
 }

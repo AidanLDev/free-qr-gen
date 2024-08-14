@@ -7,11 +7,10 @@ export default function QRCodeSvg({
   size,
   bgColour,
   fgColour,
-  image,
   imageSettings,
   svgRef,
 }: IQrCodeSvgProps) {
-  const qrImageSettings = image && imageSettings ? imageSettings : undefined
+  const qrImageSettings = imageSettings ? imageSettings : undefined
   return (
     <div ref={svgRef} className="self-center">
       <QRCodeSVG
