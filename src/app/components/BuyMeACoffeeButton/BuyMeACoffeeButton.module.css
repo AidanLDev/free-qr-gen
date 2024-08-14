@@ -3,12 +3,12 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  background-color: #40dca5;
+  background-color: var(--primary);
   color: #ffffff;
   border: none;
   border-radius: 5px;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 1.25em;
   line-height: 1.35;
   text-decoration: none;
   cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .bmcButton:hover {
-  background-color: #35b78d;
+  background-color: var(--primaryDark);
 }
 
 .bmcButton img {
