@@ -5,6 +5,7 @@ import FeedbackForm from './form/FeedbackForm'
 import BuyMeACoffeeButton from './BuyMeACoffeeButton/BuyMeACoffeeButton'
 import Link from 'next/link'
 import { FaLongArrowAltRight, FaBug } from 'react-icons/fa'
+import { format } from 'date-fns'
 
 export default function Footer() {
   const [formOpen, setFormOpen] = useState(false)
@@ -28,6 +29,11 @@ export default function Footer() {
               <FaLongArrowAltRight className="text-primary" />
             </div>
           </Link>
+        )}
+        {!formOpen && (
+          <span className="self-baseline">
+            © Aidan Lowson {format(new Date(), 'yyyy')}
+          </span>
         )}
       </div>
       <FeedbackForm
