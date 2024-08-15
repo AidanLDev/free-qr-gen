@@ -7,39 +7,50 @@ import Link from 'next/link'
 import { FaLongArrowAltRight, FaBug } from 'react-icons/fa'
 import { format } from 'date-fns'
 
-export default function Footer() {
+interface IFooterProps {
+  supportMe?: boolean
+}
+
+export default function Footer({ supportMe }: IFooterProps) {
   const [formOpen, setFormOpen] = useState(false)
   return (
-    <footer className="w-full">
-      <div className="flex w-full justify-between items-center">
-        {!formOpen && (
-          <div
-            className="flex gap-1 items-center"
-            onClick={() => setFormOpen((prevState) => !prevState)}
+    <>
+      <div className="flex w-full justify-center">
+        <FeedbackForm
+          feedbackFormOpen={formOpen}
+          setFeedbackFormOpen={setFormOpen}
+        />
+      </div>
+      <footer className="w-full flex md:flex-row flex-col justify-between md:items-center items-center gap-4">
+        <div
+          className="flex gap-1 items-center justify-center text-primary py-2 md:self-baseline"
+          onClick={() => setFormOpen((prevState) => !prevState)}
+        >
+          <span className="link-style hover:underline cursor-pointer text-primary">
+            Feedback/Report a bug
+          </span>
+          <FaBug className="text-primary hover:underline cursor-pointer" />
+        </div>
+        {<BuyMeACoffeeButton />}
+        {
+          <Link
+            href={supportMe ? '/' : '/support-me'}
+            className="md:self-baseline"
           >
-            <span className="link-style">Feedback/Report a bug</span>
-            <FaBug className="text-primary" />
-          </div>
-        )}
-        {!formOpen && <BuyMeACoffeeButton />}
-        {!formOpen && (
-          <Link href="/support-me" className="self-baseline">
             <div className="flex gap-1 items-center">
-              <span className="link-style">Support Me</span>
-              <FaLongArrowAltRight className="text-primary" />
+              <span className="link-style">
+                {supportMe ? 'BackHome' : 'Support Me'}
+              </span>
+              <FaLongArrowAltRight className="text-primary hover:underline cursor-pointer" />
             </div>
           </Link>
-        )}
-        {!formOpen && (
-          <span className="self-baseline">
-            © Aidan Lowson {format(new Date(), 'yyyy')}
+        }
+        {
+          <span className="md:self-baseline">
+            © Aidan Lowson - {format(new Date(), 'yyyy')}
           </span>
-        )}
-      </div>
-      <FeedbackForm
-        feedbackFormOpen={formOpen}
-        setFeedbackFormOpen={setFormOpen}
-      />
-    </footer>
+        }
+      </footer>
+    </>
   )
 }
