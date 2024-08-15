@@ -35,10 +35,9 @@ export default function SupportMe() {
       }),
     })
 
-    console.log('subResponse: ', subResponse)
-
     if (subResponse.ok) {
       toast('Successfully subscribed to the newsletter', { type: 'success' })
+      setEmail("")
     } else {
       toast('Error subscribing to the newsletter, please try again', {
         type: 'error',
