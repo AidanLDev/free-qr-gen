@@ -15,4 +15,7 @@ export function debounce<T extends (...args: any[]) => any>(
   }
 }
 
-
+export const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}

@@ -7,14 +7,42 @@ import BuyMeACoffeeButton from '../components/BuyMeACoffeeButton/BuyMeACoffeeBut
 import Footer from '../components/Footer'
 import Input from '../components/form/TextInput'
 import Button from '../components/form/Button'
+import { postHeader } from '../constants/constants'
+import { toast } from 'react-toastify'
+import { validateEmail } from '@/app/lib/helpers'
 
 export default function SupportMe() {
   const [email, setEmail] = useState('')
 
-  const handleSubscribe = () => {
-    console.log('handleSubscribe clicked...')
-    {
-      /* TODO: Add email validation */
+  const handleSubscribe = async () => {
+    if (!email) {
+      toast(
+        'Please enter an email address you would like us to send the news letter to',
+        { type: 'info' }
+      )
+      return
+    }
+
+    if (!validateEmail(email)) {
+      toast('Please check your email address and try again', { type: 'info' })
+      return
+    }
+    const subResponse = await fetch('api/subscribe', {
+      headers: postHeader,
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+      }),
+    })
+
+    console.log('subResponse: ', subResponse)
+
+    if (subResponse.ok) {
+      toast('Successfully subscribed to the newsletter', { type: 'success' })
+    } else {
+      toast('Error subscribing to the newsletter, please try again', {
+        type: 'error',
+      })
     }
   }
 
@@ -35,7 +63,10 @@ export default function SupportMe() {
             id="Email"
             type="email"
           />
-          <Button label="Subscribe" onClick={handleSubscribe} />
+          <Button
+            label="Subscribe"
+            onClick={async () => await handleSubscribe()}
+          />
         </div>
         <p>
           Take a look at{' '}

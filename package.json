@@ -13,6 +13,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.631.0",
     "@next/third-parties": "^14.2.5",
     "date-fns": "^3.6.0",
     "next": "14.2.5",
