@@ -29,7 +29,7 @@ body {
 }
 
 .link-style {
-  @apply text-primary hover:underline transition-all duration-700;
+  @apply text-primary hover:underline transition-all duration-700 font-bold text-center cursor-pointer;
 }
 
 /* Accordion class */
@@ -88,8 +88,8 @@ Copy.rotate-180 {
 
 /* Feedback form */
 .feedback-form-wrapper {
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out,
-    max-height 0.5s ease-in-out;
+  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out,
+    max-height 0.25s ease-in-out;
   opacity: 0;
   visibility: hidden;
   max-height: 0;
