@@ -121,7 +121,7 @@ export default function QRInfoForm() {
         id="size"
         label="size"
         min={1}
-        max={1000}
+        max={10000}
         value={size}
         setValue={setSize}
       />

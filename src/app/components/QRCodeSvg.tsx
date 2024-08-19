@@ -11,7 +11,8 @@ export default function QRCodeSvg({
   svgRef,
 }: IQrCodeSvgProps) {
   const qrImageSettings = imageSettings ? imageSettings : undefined
-  const displaySize = size && size > 300 ? 300 : size // Limit the display size
+  const displaySize = size && (size > 300 || size < 300) ? 300 : size // Limit the display size
+
   return (
     <div
       ref={svgRef}
@@ -20,15 +21,12 @@ export default function QRCodeSvg({
     >
       <QRCodeSVG
         value={url}
-        size={size || 128}
+        size={size || 128} // Set to full size for download
         bgColor={bgColour || '#ffffff'}
         fgColor={fgColour || '#000000'}
         imageSettings={qrImageSettings}
         includeMargin
-        style={{
-          transform: displaySize && size ? `scale(${displaySize / size})` : '',
-          transformOrigin: '0 0',
-        }}
+        style={{ width: '100%', height: '100%' }} // Force full size for container
       />
     </div>
   )
