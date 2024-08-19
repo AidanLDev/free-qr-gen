@@ -34,7 +34,8 @@ async function handler(req: NextRequest) {
       Item: {
         ID: { S: randomUUID() },
         Email: { S: email },
-        CreatedDate: { S: new Date().toISOString() }
+        CreatedDate: { S: new Date().toISOString() },
+        Subscribed: { BOOL: true },
       },
     }
 
