@@ -4,6 +4,7 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import Providers from './Providers'
 import { ToastContainer } from 'react-toastify'
+import Header from './components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -74,8 +75,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>
-          <ToastContainer />
+        <ToastContainer />
+        <body
+          className={`${inter.className} min-h-screen  px-8 sm:px-24 flex flex-col justify-between pb-4`}
+        >
+          <Header />
           {children}
         </body>
       </Providers>

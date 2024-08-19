@@ -37,7 +37,7 @@ export default function SupportMe() {
 
     if (subResponse.ok) {
       toast('Successfully subscribed to the newsletter', { type: 'success' })
-      setEmail("")
+      setEmail('')
     } else {
       toast('Error subscribing to the newsletter, please try again', {
         type: 'error',
@@ -46,7 +46,7 @@ export default function SupportMe() {
   }
 
   return (
-    <div className="min-h-screen  px-8 sm:px-24 flex flex-col justify-between pb-4">
+    <div>
       <main className="flex flex-col items-center justify-between sm:py-24 py-8 gap-3">
         <h1 className="text-lg font-bold">
           Thanks for visiting my QR Gen project!
