@@ -74,15 +74,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providers>
-        <ToastContainer />
-        <body
-          className={`${inter.className} min-h-screen  px-8 sm:px-24 flex flex-col justify-between pb-4`}
-        >
+      <body
+        className={`${inter.className} min-h-screen  px-8 sm:px-24 pb-4`}
+      >
+        <Providers>
+          <ToastContainer />
           <Header />
           {children}
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   )
 }
