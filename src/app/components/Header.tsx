@@ -1,10 +1,20 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
-
 
 export default function Header() {
   return (
-    <header>
-      <h1 className="flex w-full justify-center border-b bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:bg-zinc-800/30 text-primary">
+    <header className="flex w-full gap-4 pt-8 sm:flex-nowrap flex-wrap sm:justify-normal justify-center">
+      <Link className="cursor-pointer" href="/">
+        <Image
+          alt="Free QR Gen Logo"
+          src="/FreeQRGenLogo.webp"
+          width={128}
+          height={100}
+          className="rounded-xl cursor-pointer"
+        />
+      </Link>
+      <h1 className="flex w-full pb-6 pt-8 backdrop-blur-2xl  lg:w-auto  lg:rounded-xl text-primary font-bold md:text-4xl text-xl text-center m-auto sm:justify-normal justify-center">
         Welcome! Generate a free QR Code
       </h1>
     </header>

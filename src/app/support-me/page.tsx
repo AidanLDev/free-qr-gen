@@ -47,7 +47,7 @@ export default function SupportMe() {
 
   return (
     <div>
-      <main className="flex flex-col items-center justify-between sm:py-24 py-8 gap-3 min-h-[80vh]">
+      <main className="flex flex-col items-center justify-between sm:pb-24 py-8 gap-3 min-h-[75vh]">
         <h1 className="text-lg font-bold">
           Thanks for visiting my QR Gen project!
         </h1>
