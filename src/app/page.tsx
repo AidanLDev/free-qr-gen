@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-      <main className="flex flex-col items-center justify-between sm:py-24 py-8 min-h-[80vh]">
+      <main className="flex flex-col items-center justify-between sm:pb-24 pb-8 min-h-[80vh]">
         <JsonLd />
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-2xl">
           <h2 className="text-center text-xl sm:my-4 mb-4 mt-28">
