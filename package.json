@@ -13,13 +13,13 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.637.0",
-    "@next/third-parties": "^14.2.7",
+    "@aws-sdk/client-dynamodb": "^3.650.0",
+    "@next/third-parties": "^14.2.10",
     "date-fns": "^3.6.0",
-    "next": "14.2.7",
+    "next": "14.2.10",
     "next-sitemap": "^4.2.3",
-    "nodemailer": "^6.9.14",
-    "qrcode.react": "^3.1.0",
+    "nodemailer": "^6.9.15",
+    "qrcode.react": "^4.0.1",
     "react": "^18.3.1",
     "react-collapsible": "^2.10.0",
     "react-color": "^2.19.3",
@@ -33,14 +33,14 @@
     "@types/react": "^18.3.5",
     "@types/react-color": "^3.0.12",
     "@types/react-dom": "^18.3.0",
-    "aws-cdk-lib": "2.142.1",
+    "aws-cdk-lib": "2.158.0",
     "constructs": "10.3.0",
     "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.7",
+    "eslint-config-next": "14.2.10",
     "postcss": "^8.4.41",
     "sst": "^2.43.7",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4"
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
   },
   "prettier": {
     "trailingComma": "es5",
