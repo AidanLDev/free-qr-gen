@@ -35,7 +35,7 @@ export default {
           domainAlias: `www.${domainName}`,
           hostedZone: domainName,
           cdk: {
-            certificate,
+            certificate: certificate,
           },
         },
         environment: {
@@ -54,3 +54,13 @@ export default {
     })
   },
 } satisfies SSTConfig
+/*
+        environment: {
+          HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
+          BASE_URL: 'https://freeqrgen.net',
+          EMAIL_PASSWORD: process.env.EMAIL_PASSWORD!,
+          MY_AWS_ACCESS_KEY_ID: process.env.MY_AWS_ACCESS_KEY_ID!,
+          MY_AWS_SECRET_ACCESS_KEY: process.env.MY_AWS_SECRET_ACCESS_KEY!,
+          MY_AWS_ACCOUNT_ID: process.env.MY_AWS_ACCOUNT_ID!,
+        },
+*/
