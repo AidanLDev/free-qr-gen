@@ -1,6 +1,12 @@
 'use client'
 
-import React, { useState, useRef, MutableRefObject, useCallback } from 'react'
+import React, {
+  useState,
+  useRef,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+} from 'react'
 import TextInput from '@/app/components/form/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
 import Button from './Button'
@@ -25,6 +31,8 @@ export default function QRInfoForm() {
   const [imgSettings, setImgSettings] = useState<IImageSettings | undefined>(
     undefined
   )
+  const [imgWidth, setImgWidth] = useState(48)
+  const [imgHeight, setImgHeight] = useState(48)
 
   const handleDownloadQrCode = () => {
     if (!svgRef) {
@@ -92,8 +100,8 @@ export default function QRInfoForm() {
       reader.onloadend = () => {
         if (reader && reader.result && typeof reader.result === 'string') {
           setImgSettings({
-            height: 24,
-            width: 24,
+            height: imgHeight,
+            width: imgWidth,
             src: reader.result,
             excavate: true,
           })
@@ -167,8 +175,44 @@ export default function QRInfoForm() {
           setRemoveImage={setImgSettings}
         />
       </div>
+      {imgSettings && (
+        <>
+          <div>
+            <NumberInput
+              id="imgHeight"
+              label="Logo Height"
+              value={imgHeight}
+              setValue={setImgHeight}
+              max={size}
+            />
+          </div>
+          <div>
+            <NumberInput
+              id="imgWidth"
+              label="Logo Width"
+              value={imgWidth}
+              setValue={setImgWidth}
+              max={size}
+            />
+          </div>
+        </>
+      )}
     </div>
   )
+
+  useEffect(() => {
+    setImgSettings((prevSettings) => {
+      if (prevSettings) {
+        return {
+          ...prevSettings,
+          height: imgHeight,
+          width: imgWidth,
+        }
+      } else {
+        return undefined
+      }
+    })
+  }, [imgHeight, imgWidth])
 
   return (
     <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
@@ -183,7 +227,9 @@ export default function QRInfoForm() {
           {customstaiseForm}
         </Collapsible>
       </div>
-      <div className={`sm:w-1/2 w-full mb-12  ${url ? 'flex flex-col gap-8' : ''}`}>
+      <div
+        className={`sm:w-1/2 w-full mb-12  ${url ? 'flex flex-col gap-8' : ''}`}
+      >
         <TextInput
           id="url-input"
           label="Choose URL for your QR code to link to (e.g. your-business.com)"
