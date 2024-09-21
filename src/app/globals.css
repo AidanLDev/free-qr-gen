@@ -10,6 +10,9 @@
   --secondary: #ffc107;
   --primaryDark: #0c9177;
   --secondaryDark: #d19d02;
+  --darkColor: #3333;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--primaryDark) var(--darkColor);
 }
 
 body {
