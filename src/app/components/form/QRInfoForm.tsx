@@ -34,6 +34,9 @@ export default function QRInfoForm() {
   const [imgWidth, setImgWidth] = useState(48)
   const [imgHeight, setImgHeight] = useState(48)
 
+  const bgPickerRef = useRef<HTMLDivElement>(null)
+  const fgPickerRef = useRef<HTMLDivElement>(null)
+
   const handleDownloadQrCode = () => {
     if (!svgRef) {
       return
@@ -142,7 +145,10 @@ export default function QRInfoForm() {
             value={backgroundColour}
           />
         </div>
-        <div className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}>
+        <div
+          className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}
+          ref={bgPickerRef}
+        >
           <ChromePicker
             color={backgroundColour}
             onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
@@ -151,7 +157,11 @@ export default function QRInfoForm() {
       </div>
       <div className="flex flex-col gap-4">
         <div
-          onClick={() => setFgPickerOpen((prevState) => !prevState)}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            setFgPickerOpen((prevState) => !prevState)
+          }}
           className="color-picker-container"
         >
           <TextInput
@@ -161,7 +171,10 @@ export default function QRInfoForm() {
             value={foregroundColour}
           />
         </div>
-        <div className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}>
+        <div
+          className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}
+          ref={fgPickerRef}
+        >
           <ChromePicker
             color={foregroundColour}
             onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
@@ -213,6 +226,27 @@ export default function QRInfoForm() {
       }
     })
   }, [imgHeight, imgWidth])
+
+  console.log('qrInfoForm')
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        bgPickerRef.current &&
+        !bgPickerRef.current.contains(event.target as Node)
+      ) {
+        setBgPickerOpen(false)
+      }
+      if (
+        fgPickerRef.current &&
+        !fgPickerRef.current.contains(event.target as Node)
+      ) {
+        setFgPickerOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [bgPickerRef, setBgPickerOpen, fgPickerOpen, setFgPickerOpen])
 
   return (
     <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
