@@ -36,6 +36,8 @@ export default function QRInfoForm() {
 
   const bgPickerRef = useRef<HTMLDivElement>(null)
   const fgPickerRef = useRef<HTMLDivElement>(null)
+  const fgPickerContainerRef = useRef<HTMLDivElement>(null)
+  const bgPickerContainerRef = useRef<HTMLDivElement>(null)
 
   const handleDownloadQrCode = () => {
     if (!svgRef) {
@@ -137,7 +139,10 @@ export default function QRInfoForm() {
         setValue={setSize}
       />
       <div className="flex flex-col gap-4">
-        <div onClick={() => setBgPickerOpen((prevState) => !prevState)}>
+        <div
+          onClick={() => setBgPickerOpen((prevState) => !prevState)}
+          ref={bgPickerContainerRef}
+        >
           <TextInput
             id="bgColour"
             label="Background Colour"
@@ -158,11 +163,11 @@ export default function QRInfoForm() {
       <div className="flex flex-col gap-4">
         <div
           onClick={(e) => {
-            e.preventDefault()
             e.stopPropagation()
             setFgPickerOpen((prevState) => !prevState)
           }}
           className="color-picker-container"
+          ref={fgPickerContainerRef}
         >
           <TextInput
             id="fgColour"
@@ -227,19 +232,21 @@ export default function QRInfoForm() {
     })
   }, [imgHeight, imgWidth])
 
-  console.log('qrInfoForm')
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         bgPickerRef.current &&
-        !bgPickerRef.current.contains(event.target as Node)
+        !bgPickerRef.current.contains(event.target as Node) &&
+        bgPickerContainerRef.current &&
+        !bgPickerContainerRef.current.contains(event.target as Node)
       ) {
         setBgPickerOpen(false)
       }
       if (
         fgPickerRef.current &&
-        !fgPickerRef.current.contains(event.target as Node)
+        !fgPickerRef.current.contains(event.target as Node) &&
+        fgPickerContainerRef.current &&
+        !fgPickerContainerRef.current.contains(event.target as Node)
       ) {
         setFgPickerOpen(false)
       }

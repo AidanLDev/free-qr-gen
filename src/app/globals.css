@@ -87,6 +87,7 @@ Copy.rotate-180 {
 .chrome-picker {
   margin: auto;
   box-shadow: 0 0 20px rgba(214, 214, 214, 0.25) !important;
+  width: 100% !important;
 }
 
 /* Feedback form */
