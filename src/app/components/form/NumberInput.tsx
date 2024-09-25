@@ -34,6 +34,8 @@ export default function NumberInput({
           inputClassName ? inputClassName : ''
         } text-black px-1 py-2 rounded-md focus:border-primary focus:outline-primary focus-within:border-primary focus-within:outline-primary`}
         type="number"
+        inputMode="numeric"
+        pattern="[0-9]"
         onFocus={() => setFocus && setFocus(true)}
         onBlur={() => setFocus && setFocus(false)}
         min={min}

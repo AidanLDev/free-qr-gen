@@ -11,6 +11,7 @@ export interface ITextInput {
   inputClassName?: string
   containerClassName?: string
   setFocus?: Dispatch<SetStateAction<boolean>>
+  placeholder?: string
 }
 
 export interface IImageSettings {

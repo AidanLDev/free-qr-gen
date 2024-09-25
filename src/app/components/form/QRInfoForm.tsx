@@ -24,8 +24,8 @@ export default function QRInfoForm() {
   const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
   const [size, setSize] = useState(300)
-  const [backgroundColour, setBackgroundColour] = useState('#FFF')
-  const [foregroundColour, setForegroundColour] = useState('#000')
+  const [backgroundColour, setBackgroundColour] = useState('white')
+  const [foregroundColour, setForegroundColour] = useState('black')
   const [bgPickerOpen, setBgPickerOpen] = useState(false)
   const [fgPickerOpen, setFgPickerOpen] = useState(false)
   const [imgSettings, setImgSettings] = useState<IImageSettings | undefined>(
@@ -132,7 +132,7 @@ export default function QRInfoForm() {
     <div className="flex flex-col gap-6 p-4">
       <NumberInput
         id="size"
-        label="size"
+        label="Size (px)"
         min={1}
         max={10000}
         value={size}
@@ -198,19 +198,21 @@ export default function QRInfoForm() {
           <div>
             <NumberInput
               id="imgHeight"
-              label="Logo Height"
+              label="Logo Height (px)"
               value={imgHeight}
               setValue={setImgHeight}
               max={size}
+              min={1}
             />
           </div>
           <div>
             <NumberInput
               id="imgWidth"
-              label="Logo Width"
+              label="Logo Width (px)"
               value={imgWidth}
               setValue={setImgWidth}
               max={size}
+              min={1}
             />
           </div>
         </>
@@ -273,10 +275,11 @@ export default function QRInfoForm() {
       >
         <TextInput
           id="url-input"
-          label="Choose URL for your QR code to link to (e.g. your-business.com)"
+          label="Code URL:"
           value={url}
           setValue={setUrl}
           containerClassName="py-2"
+          placeholder="e.g. google.com"
         />
         {url && !url.match(urlRegex) && (
           <span className="text-secondary">

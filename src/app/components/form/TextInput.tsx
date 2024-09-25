@@ -10,6 +10,7 @@ export default function Input({
   inputClassName,
   containerClassName,
   setFocus,
+  placeholder
 }: ITextInput) {
   return (
     <div
@@ -28,6 +29,7 @@ export default function Input({
         type={type}
         onFocus={() => setFocus && setFocus(true)}
         onBlur={() => setFocus && setFocus(false)}
+        placeholder={placeholder}
       />
     </div>
   );
