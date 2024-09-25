@@ -14,9 +14,8 @@ export default function Home() {
       <main className="flex flex-col items-center justify-between sm:pb-24 pb-8 min-h-[75vh] pt-4">
         <JsonLd />
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-2xl">
-          <h2 className="text-center text-xl sm:my-4 mb-4">
-            Just enter the destination you want your QR Code to link to and you
-            can configure how your QR code looks in the form below
+          <h2 className="text-center text-xl sm:my-4 mb-4 font-bold">
+            Enter your link and customize your QR code below!
           </h2>
           <QRInfoForm />
         </div>

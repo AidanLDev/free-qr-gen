@@ -14,7 +14,7 @@ export default function Header() {
           className="rounded-xl cursor-pointer"
         />
       </Link>
-      <h1 className="flex w-full pb-6 pt-8 backdrop-blur-2xl  lg:w-auto  lg:rounded-xl text-primary font-bold md:text-4xl text-xl text-center m-auto sm:justify-normal justify-center">
+      <h1 className="flex w-full pb-6 pt-8 backdrop-blur-2xl  lg:w-auto  lg:rounded-xl text-primary font-bold md:text-4xl text-2xl text-center m-auto sm:justify-normal justify-center">
         Welcome! Generate a free QR Code
       </h1>
     </header>
