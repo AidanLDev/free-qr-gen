@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IFeedbackFormProps } from '@/app/types'
 import { MdClose } from 'react-icons/md'
@@ -14,6 +14,14 @@ export default function FeedbackForm({
   feedbackFormOpen,
 }: IFeedbackFormProps) {
   const [feedback, setFeedback] = useState('')
+  useEffect(() => {
+    if (feedbackFormOpen) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      })
+    }
+  }, [feedbackFormOpen])
   const handleSubmitFeedback = async () => {
     const sendFeedbackRes = await fetch('api/send-feedback', {
       headers: postHeader,
@@ -51,7 +59,7 @@ export default function FeedbackForm({
           height={28}
         />
       </div>
-      <div className='flex flex-col gap-4 text-center'>
+      <div className="flex flex-col gap-4 text-center">
         <p className="py-2">Spotted an issue? Let me know and I will fix it!</p>
         <div className="flex flex-col gap-4 text-center">
           <TextArea
