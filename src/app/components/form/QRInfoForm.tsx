@@ -97,8 +97,8 @@ export default function QRInfoForm() {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const file = event.target.files[0]
-      if (file.size > 3048576) {
-        toast('File is too large, must be smaller than 3MB', { type: 'error' })
+      if (file.size > 10048576) {
+        toast('File is too large, must be smaller than 10MB', { type: 'error' })
         return
       }
       const reader = new FileReader()

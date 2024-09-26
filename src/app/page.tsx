@@ -14,9 +14,6 @@ export default function Home() {
       <main className="flex flex-col items-center justify-between sm:pb-24 pb-8 min-h-[75vh] pt-4">
         <JsonLd />
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-2xl">
-          <h2 className="text-center text-2xl sm:my-4 mb-4 font-semibold">
-            Enter your link and customise your QR code below!
-          </h2>
           <QRInfoForm />
         </div>
       </main>
