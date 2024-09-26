@@ -117,7 +117,7 @@ export default function QRInfoForm() {
   }
   const collapseHeader = (
     <div className="flex justify-between p-2">
-      Customise your code!
+      <span className='text-2xl font-semibold'>Customise your code!</span>
       <div
         className={`transform transition-transform duration-500 ${
           isOptionsOpen ? 'rotate-180' : ''
@@ -259,7 +259,7 @@ export default function QRInfoForm() {
 
   return (
     <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
-      <div className="sm:w-1/2 w-full text-center">
+      <div className="sm:w-1/2 w-full text-center mt-4">
         <Collapsible
           trigger={collapseHeader}
           triggerClassName="trigger-closed"
@@ -278,7 +278,7 @@ export default function QRInfoForm() {
           label="Code URL:"
           value={url}
           setValue={setUrl}
-          containerClassName="py-2"
+          containerClassName="pb-2"
           placeholder="e.g. google.com"
         />
         {url && !url.match(urlRegex) && (
