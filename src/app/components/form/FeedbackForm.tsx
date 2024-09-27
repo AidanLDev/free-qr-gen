@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react'
 
 import { IFeedbackFormProps } from '@/app/types'
 import { MdClose } from 'react-icons/md'
-import Button from './Button'
+import Button from './components/Button'
 import { toast } from 'react-toastify'
-import TextArea from './TextArea'
+import TextArea from './components/TextArea'
 import { postHeader } from '@/app/constants/constants'
 
 export default function FeedbackForm({

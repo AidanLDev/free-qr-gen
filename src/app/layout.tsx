@@ -29,6 +29,8 @@ export const metadata: Metadata = {
     'Colorful QR codes',
     'Logo QR codes',
     'QR code analytics',
+    'how to create branded QR codes',
+    'best free QR code generator for marketing'
   ],
   openGraph: {
     title: 'Free QR Code Generator',

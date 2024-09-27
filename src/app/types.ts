@@ -2,6 +2,8 @@
 
 import { Dispatch, MutableRefObject, SetStateAction } from 'react'
 
+export type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H'
+
 export interface ITextInput {
   id: string
   label: string
@@ -31,6 +33,7 @@ export interface IQrCodeSvgProps {
   fgColour?: string
   imageSettings?: IImageSettings
   svgRef: MutableRefObject<HTMLDivElement | null>
+  errorCorrectionLevel: ErrorCorrectionLevel
 }
 
 export interface IButtonProps {
@@ -78,4 +81,12 @@ export interface ITextAreaProps {
   inputClassName?: string
   containerClassName?: string
   setFocus?: Dispatch<SetStateAction<boolean>>
+}
+
+export interface ISelectProps {
+  label: string
+  options: Record<string, string>
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
+  className?: string
 }

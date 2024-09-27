@@ -7,17 +7,21 @@ import React, {
   useCallback,
   useEffect,
 } from 'react'
-import TextInput from '@/app/components/form/TextInput'
+import TextInput from '@/app/components/form/components/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
-import Button from './Button'
+import Button from './components/Button'
 import { toast } from 'react-toastify'
 import Collapsible from 'react-collapsible'
 import { FaChevronDown } from 'react-icons/fa'
-import NumberInput from './NumberInput'
+import NumberInput from './components/NumberInput'
 import { ChromePicker, ColorResult } from 'react-color'
-import { IImageSettings } from '@/app/types'
-import ImageUpload from './ImageUpload'
-import { urlRegex } from '@/app/constants/constants'
+import { ErrorCorrectionLevel, IImageSettings } from '@/app/types'
+import ImageUpload from './components/ImageUpload'
+import {
+  errorCorrectionLevelOptions,
+  urlRegex,
+} from '@/app/constants/constants'
+import Select from './components/Select'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
@@ -33,6 +37,8 @@ export default function QRInfoForm() {
   )
   const [imgWidth, setImgWidth] = useState(48)
   const [imgHeight, setImgHeight] = useState(48)
+
+  const [errorCorrectionLevel, setErrorCorrectionLevel] = useState('M')
 
   const bgPickerRef = useRef<HTMLDivElement>(null)
   const fgPickerRef = useRef<HTMLDivElement>(null)
@@ -188,6 +194,12 @@ export default function QRInfoForm() {
           />
         </div>
       </div>
+      <Select
+        label="Error Correction Level"
+        options={errorCorrectionLevelOptions}
+        value={errorCorrectionLevel}
+        setValue={setErrorCorrectionLevel}
+      />
       <div>
         <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
         <ImageUpload
@@ -296,6 +308,7 @@ export default function QRInfoForm() {
             fgColour={foregroundColour}
             bgColour={backgroundColour}
             imageSettings={imgSettings}
+            errorCorrectionLevel={errorCorrectionLevel as ErrorCorrectionLevel}
           />
         )}
         {url && url.match(urlRegex) && (
