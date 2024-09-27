@@ -116,10 +116,12 @@ export default function QRInfoForm() {
     }
   }
   const collapseHeader = (
-    <div className="flex justify-between p-2">
-      <span className='text-2xl font-semibold'>Customise your code!</span>
+    <div className="flex justify-center p-2">
+      <span className="text-2xl font-semibold w-full">
+        Customise your code!
+      </span>
       <div
-        className={`transform transition-transform duration-500 ${
+        className={`transform transition-transform duration-500 pt-[6px] ${
           isOptionsOpen ? 'rotate-180' : ''
         }`}
       >

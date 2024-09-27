@@ -41,6 +41,8 @@ body {
   width: 100%;
   display: inline-block;
   padding: 0.5rem 0;
+  border-radius: 1rem;
+  text-align: center;
 }
 
 Copy.rotate-180 {
