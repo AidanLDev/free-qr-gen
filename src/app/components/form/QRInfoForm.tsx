@@ -277,10 +277,10 @@ export default function QRInfoForm() {
       >
         <TextInput
           id="url-input"
-          label="Code URL:"
+          label="QR Code URL"
           value={url}
           setValue={setUrl}
-          containerClassName="pb-2"
+          containerClassName="pb-2 text-center"
           placeholder="e.g. google.com"
         />
         {url && !url.match(urlRegex) && (
