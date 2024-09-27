@@ -16,10 +16,15 @@ export default function FeedbackForm({
   const [feedback, setFeedback] = useState('')
   useEffect(() => {
     if (feedbackFormOpen) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      })
+      const timeoutId = setTimeout(
+        () =>
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+          }),
+        200
+      )
+      return () => clearTimeout(timeoutId)
     }
   }, [feedbackFormOpen])
   const handleSubmitFeedback = async () => {
