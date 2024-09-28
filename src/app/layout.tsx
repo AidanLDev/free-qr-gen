@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-tooltip/dist/react-tooltip.css'
+
 import Providers from './Providers'
 import { ToastContainer } from 'react-toastify'
 import Header from './components/Header'
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     'Logo QR codes',
     'QR code analytics',
     'how to create branded QR codes',
-    'best free QR code generator for marketing'
+    'best free QR code generator for marketing',
   ],
   openGraph: {
     title: 'Free QR Code Generator',
@@ -76,9 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} min-h-screen  px-8 sm:px-24 pb-4`}
-      >
+      <body className={`${inter.className} min-h-screen  px-8 sm:px-24 pb-4`}>
         <Providers>
           <ToastContainer />
           <Header />

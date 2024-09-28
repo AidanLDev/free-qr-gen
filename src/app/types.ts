@@ -89,4 +89,6 @@ export interface ISelectProps {
   value: string
   setValue: Dispatch<SetStateAction<string>>
   className?: string
+  tooltip?: string
+  tooltipType?: string // TODO: Get types from docs and create type 
 }
