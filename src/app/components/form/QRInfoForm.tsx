@@ -199,7 +199,8 @@ export default function QRInfoForm() {
         options={errorCorrectionLevelOptions}
         value={errorCorrectionLevel}
         setValue={setErrorCorrectionLevel}
-        tooltip="Error correction value is the capability to restore data if the code is dirty or damaged. From less correction to highest it goes L, M, Q, H with L being the lowest and H the highest."
+        tooltip="Error Correction Level determines how much damage the code can sustain while remaining scannable. Levels range from L (7% recovery) to H (30%)."
+        tooltipType='info'
       />
       <div>
         <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>

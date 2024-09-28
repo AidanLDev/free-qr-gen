@@ -4,6 +4,14 @@ import { Dispatch, MutableRefObject, SetStateAction } from 'react'
 
 export type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H'
 
+export type TooltipVarient =
+  | 'dark'
+  | 'light'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+
 export interface ITextInput {
   id: string
   label: string
@@ -90,5 +98,5 @@ export interface ISelectProps {
   setValue: Dispatch<SetStateAction<string>>
   className?: string
   tooltip?: string
-  tooltipType?: string // TODO: Get types from docs and create type 
+  tooltipType?: TooltipVarient
 }

@@ -10,7 +10,7 @@ export default function Select({
   setValue,
   className = '',
   tooltip,
-  tooltipType = ""
+  tooltipType,
 }: ISelectProps) {
   const SelectLabel = (
     <label htmlFor={label} className="block mb-2 dark:text-white">
@@ -20,14 +20,25 @@ export default function Select({
   return (
     <div className={`relative ${className}`}>
       {tooltip ? (
-        <div>
+        <>
           <Tooltip
-
-          >
-          {SelectLabel}
-          <IoInformationCircleOutline />
-          </Tooltip>
-        </div>
+            variant={tooltipType}
+            id={`${label}-tooltip`}
+            content={tooltip}
+            place="top"
+            style={{
+              maxWidth: '400px',
+              whiteSpace: 'normal',
+            }}
+            className="custom-tooltip"
+          />
+          <div data-tooltip-id={`${label}-tooltip`} className='flex justify-center items-center gap-4'>
+            {SelectLabel}
+            <IoInformationCircleOutline
+              className='mb-[7px]'
+            />
+          </div>
+        </>
       ) : (
         SelectLabel
       )}

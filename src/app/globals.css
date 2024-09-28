@@ -107,3 +107,7 @@ Copy.rotate-180 {
   max-height: 400px;
   margin-bottom: 2rem;
 }
+
+.custom-tooltip {
+  opacity: 1 !important;
+}
