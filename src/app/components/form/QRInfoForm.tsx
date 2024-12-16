@@ -3,9 +3,9 @@
 import React, {
   useState,
   useRef,
-  MutableRefObject,
   useCallback,
   useEffect,
+  RefObject,
 } from 'react'
 import TextInput from '@/app/components/form/components/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
@@ -25,7 +25,7 @@ import Select from './components/Select'
 
 export default function QRInfoForm() {
   const [url, setUrl] = useState('')
-  const svgRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
+  const svgRef: RefObject<HTMLDivElement | null> = useRef(null)
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
   const [size, setSize] = useState(300)
   const [backgroundColour, setBackgroundColour] = useState('white')
@@ -200,7 +200,7 @@ export default function QRInfoForm() {
         value={errorCorrectionLevel}
         setValue={setErrorCorrectionLevel}
         tooltip="Error Correction Level determines how much damage the code can sustain while remaining scannable. Levels range from L (7% recovery) to H (30%)."
-        tooltipType='info'
+        tooltipType="info"
       />
       <div>
         <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
