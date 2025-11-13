@@ -13,7 +13,8 @@ interface IFooterProps {
 
 export default function Footer({ supportMe }: IFooterProps) {
   const [formOpen, setFormOpen] = useState(false)
-  const year = format(new Date(), 'yyyy')
+  const year = typeof window !== 'undefined' ? format(new Date(), 'yyyy') : ''
+
   return (
     <>
       <div className="flex w-full justify-center">
