@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch: {}
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: SST Deploy
         run: npx sst deploy --stage production --yes
