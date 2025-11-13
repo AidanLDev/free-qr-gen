@@ -11,7 +11,7 @@ import TextInput from '@/app/components/form/components/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
 import Button from './components/Button'
 import { toast } from 'react-toastify'
-import Collapsible from 'react-collapsible'
+import Collapsible from '../Collapsible'
 import { FaChevronDown } from 'react-icons/fa'
 import NumberInput from './components/NumberInput'
 import { ChromePicker, ColorResult } from 'react-color'
@@ -37,6 +37,7 @@ export default function QRInfoForm() {
   )
   const [imgWidth, setImgWidth] = useState(48)
   const [imgHeight, setImgHeight] = useState(48)
+  const [mounted, setMounted] = useState(false)
 
   const [errorCorrectionLevel, setErrorCorrectionLevel] = useState('M')
 
@@ -162,10 +163,14 @@ export default function QRInfoForm() {
           className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}
           ref={bgPickerRef}
         >
-          <ChromePicker
-            color={backgroundColour}
-            onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
-          />
+          {mounted && (
+            <React.Suspense fallback={<div />}>
+              <ChromePicker
+                color={backgroundColour}
+                onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
+              />
+            </React.Suspense>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-4">
@@ -188,10 +193,14 @@ export default function QRInfoForm() {
           className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}
           ref={fgPickerRef}
         >
-          <ChromePicker
-            color={foregroundColour}
-            onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
-          />
+          {mounted && (
+            <React.Suspense fallback={<div />}>
+              <ChromePicker
+                color={foregroundColour}
+                onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
+              />
+            </React.Suspense>
+          )}
         </div>
       </div>
       <Select
@@ -272,6 +281,10 @@ export default function QRInfoForm() {
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [bgPickerRef, setBgPickerOpen, fgPickerOpen, setFgPickerOpen])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <div className="flex justify-evenly gap-8 flex-col sm:flex-row">

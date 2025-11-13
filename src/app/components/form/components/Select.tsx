@@ -32,11 +32,12 @@ export default function Select({
             }}
             className="custom-tooltip"
           />
-          <div data-tooltip-id={`${label}-tooltip`} className='flex justify-center items-center gap-4'>
+          <div
+            data-tooltip-id={`${label}-tooltip`}
+            className="flex justify-center items-center gap-4"
+          >
             {SelectLabel}
-            <IoInformationCircleOutline
-              className='mb-[7px]'
-            />
+            <IoInformationCircleOutline className="mb-[7px]" />
           </div>
         </>
       ) : (
@@ -44,11 +45,13 @@ export default function Select({
       )}
       <select
         id={label}
-        value={value}
-        defaultValue={`Please select ${label}`}
+        value={value ?? ''}
         onChange={(e) => setValue(e.target.value)}
         className="bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 ark:bg-dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-primary dark:focus:border-primary text-black"
       >
+        <option value="" disabled>
+          {`Please select ${label}`}
+        </option>
         {Object.entries(options).map(([key, value]) => (
           <option key={key} value={key}>
             {value}
