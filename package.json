@@ -2,6 +2,8 @@
   "name": "free-qr-gen",
   "version": "0.2.0",
   "private": true,
+  "author": "Aidan Lowson <dev@aidanlowson.com>",
+  "license": "MIT",
   "scripts": {
     "build": "next build",
     "deploy": "npx sst deploy --stage production",
