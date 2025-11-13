@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import FeedbackForm from './form/FeedbackForm'
 import BuyMeACoffeeButton from './BuyMeACoffeeButton/BuyMeACoffeeButton'
 import Link from 'next/link'
@@ -13,11 +13,7 @@ interface IFooterProps {
 
 export default function Footer({ supportMe }: IFooterProps) {
   const [formOpen, setFormOpen] = useState(false)
-  const [year, setYear] = useState<string>('')
-
-  useEffect(() => {
-    setYear(format(new Date(), 'yyyy'))
-  }, [])
+  const year = format(new Date(), 'yyyy')
   return (
     <>
       <div className="flex w-full justify-center">

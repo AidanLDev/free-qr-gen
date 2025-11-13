@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, ReactNode } from 'react'
+import React, {
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+  ReactNode,
+} from 'react'
 
 interface CollapsibleProps {
   trigger: ReactNode
@@ -24,12 +30,15 @@ export default function Collapsible({
   useEffect(() => {
     if (isOpen) onOpening?.()
     else onClosing?.()
-  }, [isOpen])
+  }, [isOpen, onOpening, onClosing])
 
-  useEffect(() => {
-    if (contentRef.current) {
-      setHeight(isOpen ? contentRef.current.scrollHeight : 0)
+  useLayoutEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setHeight(isOpen ? contentRef.current.scrollHeight : 0)
+      }
     }
+    updateHeight()
   }, [isOpen, children])
 
   return (

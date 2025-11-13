@@ -69,7 +69,7 @@ export default function ImageUpload({
         <button
           onClick={() => {
             setPreviewUrl('')
-            setRemoveImage(undefined)
+            setRemoveImage()
           }}
           className="mt-2 text-sm text-red-500 hover:text-red-700"
         >

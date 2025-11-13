@@ -73,7 +73,7 @@ export interface IColourPickerProps {
 
 export interface IImageUpload {
   handleImageUpload: (param: any) => void
-  setRemoveImage: Dispatch<SetStateAction<IImageSettings | undefined>>
+  setRemoveImage: () => void
 }
 
 export interface IFeedbackFormProps {

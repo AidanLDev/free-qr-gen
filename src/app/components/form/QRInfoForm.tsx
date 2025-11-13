@@ -32,12 +32,9 @@ export default function QRInfoForm() {
   const [foregroundColour, setForegroundColour] = useState('black')
   const [bgPickerOpen, setBgPickerOpen] = useState(false)
   const [fgPickerOpen, setFgPickerOpen] = useState(false)
-  const [imgSettings, setImgSettings] = useState<IImageSettings | undefined>(
-    undefined
-  )
+  const [imgSrc, setImgSrc] = useState<string | undefined>(undefined)
   const [imgWidth, setImgWidth] = useState(48)
   const [imgHeight, setImgHeight] = useState(48)
-  const [mounted, setMounted] = useState(false)
 
   const [errorCorrectionLevel, setErrorCorrectionLevel] = useState('M')
 
@@ -111,17 +108,13 @@ export default function QRInfoForm() {
       const reader = new FileReader()
       reader.onloadend = () => {
         if (reader && reader.result && typeof reader.result === 'string') {
-          setImgSettings({
-            height: imgHeight,
-            width: imgWidth,
-            src: reader.result,
-            excavate: true,
-          })
+          setImgSrc(reader.result)
         }
       }
       reader.readAsDataURL(file)
     }
   }
+
   const collapseHeader = (
     <div className="flex justify-center p-2">
       <span className="text-2xl font-semibold w-full">
@@ -136,6 +129,16 @@ export default function QRInfoForm() {
       </div>
     </div>
   )
+
+  const imageSettings: IImageSettings | undefined =
+    imgSrc !== undefined
+      ? {
+          height: imgHeight,
+          width: imgWidth,
+          src: imgSrc,
+          excavate: true,
+        }
+      : undefined
 
   const customstaiseForm = (
     <div className="flex flex-col gap-6 p-4">
@@ -163,7 +166,7 @@ export default function QRInfoForm() {
           className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}
           ref={bgPickerRef}
         >
-          {mounted && (
+          {typeof window !== 'undefined' && (
             <React.Suspense fallback={<div />}>
               <ChromePicker
                 color={backgroundColour}
@@ -193,7 +196,7 @@ export default function QRInfoForm() {
           className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}
           ref={fgPickerRef}
         >
-          {mounted && (
+          {typeof window !== 'undefined' && (
             <React.Suspense fallback={<div />}>
               <ChromePicker
                 color={foregroundColour}
@@ -215,10 +218,10 @@ export default function QRInfoForm() {
         <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
         <ImageUpload
           handleImageUpload={handleImageUpload}
-          setRemoveImage={setImgSettings}
+          setRemoveImage={() => setImgSrc(undefined)}
         />
       </div>
-      {imgSettings && (
+      {imgSrc && (
         <>
           <div>
             <NumberInput
@@ -246,20 +249,6 @@ export default function QRInfoForm() {
   )
 
   useEffect(() => {
-    setImgSettings((prevSettings) => {
-      if (prevSettings) {
-        return {
-          ...prevSettings,
-          height: imgHeight,
-          width: imgWidth,
-        }
-      } else {
-        return undefined
-      }
-    })
-  }, [imgHeight, imgWidth])
-
-  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         bgPickerRef.current &&
@@ -282,9 +271,7 @@ export default function QRInfoForm() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [bgPickerRef, setBgPickerOpen, fgPickerOpen, setFgPickerOpen])
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const imageSettingsProp = imageSettings
 
   return (
     <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
@@ -322,7 +309,7 @@ export default function QRInfoForm() {
             size={size}
             fgColour={foregroundColour}
             bgColour={backgroundColour}
-            imageSettings={imgSettings}
+            imageSettings={imageSettingsProp}
             errorCorrectionLevel={errorCorrectionLevel as ErrorCorrectionLevel}
           />
         )}

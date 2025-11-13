@@ -1,20 +1,20 @@
-import { defineConfig } from "eslint/config";
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
-import reactCompiler from "eslint-plugin-react-compiler";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
+import reactCompiler from 'eslint-plugin-react-compiler'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export default defineConfig([{
-    extends: [...nextCoreWebVitals],
-
+const config = [
+  {
+    ignores: ['.sst/**', 'cdk.out/**', '.next/**', 'node_modules/**'],
+  },
+  ...nextCoreWebVitals,
+  {
     plugins: {
-        "react-compiler": reactCompiler,
+      'react-compiler': reactCompiler,
     },
 
     rules: {
-        "react-compiler/react-compiler": "error",
+      'react-compiler/react-compiler': 'error',
     },
-}]);
+  },
+]
+
+export default config
