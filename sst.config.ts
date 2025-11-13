@@ -1,5 +1,4 @@
 /// <reference path="./.sst/platform/config.d.ts" />
-import { domainName } from './src/app/constants/constants'
 
 export default $config({
   app(input) {
@@ -13,8 +12,8 @@ export default $config({
   async run() {
     new sst.aws.Nextjs('MyWeb', {
       domain: {
-        name: domainName,
-        aliases: [`www.${domainName}`],
+        name: 'freeqrgen.net',
+        aliases: ['www.freeqrgen.net'],
       },
       environment: {
         HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
