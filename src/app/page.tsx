@@ -1,3 +1,4 @@
+import React from 'react'
 import QRInfoForm from './components/form/QRInfoForm'
 import { Metadata } from 'next'
 import JsonLd from './components/JsonLd'
@@ -14,10 +15,14 @@ export default function Home() {
       <main className="flex flex-col items-center justify-between sm:pb-24 pb-8 min-h-[75vh] pt-4">
         <JsonLd />
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-2xl">
-          <QRInfoForm />
+          <React.Suspense fallback={<div />}>
+            <QRInfoForm />
+          </React.Suspense>
         </div>
       </main>
-      <Footer />
+      <React.Suspense fallback={<div />}>
+        <Footer />
+      </React.Suspense>
     </div>
   )
 }

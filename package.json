@@ -8,7 +8,7 @@
     "build": "next build",
     "deploy": "npx sst deploy --stage production",
     "dev": "next dev --turbo",
-    "lint": "next lint",
+    "lint": "eslint .",
     "nextDev": "next dev",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -16,18 +16,18 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.656.0",
-    "@next/third-parties": "15.1.0",
+    "@next/third-parties": "16.0.3",
     "babel-plugin-react-compiler": "^19.0.0-beta-8a03594-20241020",
     "breakpoint-hooks": "^1.0.2",
     "date-fns": "^4.1.0",
-    "next": "15.1.0",
+    "next": "16.0.3",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.15",
     "qrcode.react": "^4.0.1",
-    "react": "19.0.0",
+    "react": "19.2.0",
     "react-collapsible": "^2.10.0",
     "react-color": "^2.19.3",
-    "react-dom": "19.0.0",
+    "react-dom": "19.2.0",
     "react-icons": "^5.3.0",
     "react-toastify": "^10.0.5",
     "react-tooltip": "^5.28.0",
@@ -36,13 +36,13 @@
   "devDependencies": {
     "@types/node": "^20.16.5",
     "@types/nodemailer": "^6.4.16",
-    "@types/react": "19.0.1",
+    "@types/react": "19.2.4",
     "@types/react-color": "^3.0.12",
-    "@types/react-dom": "19.0.2",
+    "@types/react-dom": "19.2.3",
     "aws-cdk-lib": "2.159.1",
     "constructs": "10.3.0",
     "eslint": "^9.13.0",
-    "eslint-config-next": "15.1.0",
+    "eslint-config-next": "16.0.3",
     "eslint-plugin-react-compiler": "^19.0.0-beta-8a03594-20241020",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12",
@@ -53,5 +53,11 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.4",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
