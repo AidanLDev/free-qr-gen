@@ -19,10 +19,20 @@ export default $config({
         HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
         BASE_URL: 'https://freeqrgen.net',
         EMAIL_PASSWORD: process.env.EMAIL_PASSWORD!,
-        MY_AWS_ACCESS_KEY_ID: process.env.MY_AWS_ACCESS_KEY_ID!,
-        MY_AWS_SECRET_ACCESS_KEY: process.env.MY_AWS_SECRET_ACCESS_KEY!,
-        MY_AWS_ACCOUNT_ID: process.env.MY_AWS_ACCOUNT_ID!,
       },
+      permissions: [
+        {
+          actions: [
+            'dynamodb:PutItem',
+            'dynamodb:GetItem',
+            'dynamodb:Query',
+            'dynamodb:Scan',
+          ],
+          resources: [
+            'arn:aws:dynamodb:us-east-1:136597286325:table/NewsLetterSubscribers',
+          ],
+        },
+      ],
     })
   },
 })
