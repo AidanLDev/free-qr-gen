@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# docker image (official Playwright image)
-IMAGE="mcr.microsoft.com/playwright:latest"
+# docker image (official Playwright image - specify version to match installed Playwright)
+IMAGE="mcr.microsoft.com/playwright:v1.56.1-jammy"
 
 # Checking docker cli is available
 if ! command -v docker >/dev/null 2>&1; then
@@ -86,22 +86,13 @@ if [[ "${SKIP_INSTALLS:-0}" != "1" ]]; then
   docker run --rm \
     -v "$PWD":/work -w /work \
     "$IMAGE" \
-    /bin/bash -lc "\
-      set -euo pipefail; \ 
-      corepack enable && \ 
-      corepack prepare pnpm@8 --activate && \ 
-      pnpm install --no-frozen-lockfile && \ 
-      pnpm dlx playwright install && \ 
-      chown -R ${HOST_UID}:${HOST_GID} /work"
+    /bin/bash -c "set -euo pipefail && corepack enable && corepack prepare pnpm@8 --activate && pnpm install --no-frozen-lockfile && pnpm dlx playwright install && chown -R ${HOST_UID}:${HOST_GID} /work/node_modules /work/.pnpm-store /root/.cache/ms-playwright 2>/dev/null || true"
 fi
 
 echo "Running test phase inside container (as host user)..."
 docker run --rm \
   -v "$PWD":/work -w /work \
   -u "${HOST_UID}:${HOST_GID}" \
+  -e HOME=/tmp \
   "$IMAGE" \
-  /bin/bash -lc "\
-    set -euo pipefail; \ 
-    # corepack enable may fail for non-root users, ignore if so and rely on the installed pnpm
-    corepack enable || true; \ 
-    pnpm run test:e2e"
+  /bin/bash -c "set -euo pipefail && npx playwright test"
