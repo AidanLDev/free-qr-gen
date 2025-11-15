@@ -13,9 +13,7 @@
     "start": "next start",
     "refresh": "npx sst refresh --stage production",
     "test:e2e": "playwright test",
-    "test:e2e-local": "bash ./tests/e2e/run-playwright-docker.sh",
-    "test:e2e-open": "bash ./tests/e2e/run-playwright-ui-docker.sh",
-    "test:e2e-open:local": "MODE=codegen TARGET=http://localhost:3000 pnpm run test:e2e-open"
+    "test:e2e-open": "playwright test --ui"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.931.0",

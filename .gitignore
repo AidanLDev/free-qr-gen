@@ -45,3 +45,7 @@ next-env.d.ts
 
 # pnpm
 .pnpm-store/
+
+# testing
+test-results/
+playwright-report/
