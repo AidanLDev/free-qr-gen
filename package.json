@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "next build",
-    "deploy": "npx sst deploy --stage production",
+    "deploy": "sh -c 'command -v pnpm >/dev/null 2>&1 && pnpm run test:e2e || npm run test:e2e' && npx sst deploy --stage production",
     "dev": "next dev --turbo",
     "lint": "eslint .",
     "nextDev": "next dev",
