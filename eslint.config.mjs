@@ -3,13 +3,7 @@ import reactCompiler from 'eslint-plugin-react-compiler'
 
 const config = [
   {
-    ignores: [
-      '.sst/**',
-      'cdk.out/**',
-      '.next/**',
-      'node_modules/**',
-      '.open-next/**',
-    ],
+    ignores: ['.sst/**', 'cdk.out/**', '.next/**', 'node_modules/**', '.open-next/**'],
   },
   ...nextCoreWebVitals,
   {

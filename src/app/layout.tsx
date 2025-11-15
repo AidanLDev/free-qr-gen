@@ -59,8 +59,7 @@ export const metadata: Metadata = {
     googleBot: 'index, follow',
   },
   verification: {
-    google:
-      'google-site-verification=kyNk7PgQmwiuEPtm2DX7tKsAECvYMbcNNnRTVg9fUc4',
+    google: 'google-site-verification=kyNk7PgQmwiuEPtm2DX7tKsAECvYMbcNNnRTVg9fUc4',
   },
   icons: {
     icon: [
@@ -78,8 +77,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} min-h-screen  px-8 sm:px-24 pb-4`}>
+    <html lang='en'>
+      <body className={`${inter.className} min-h-screen px-8 pb-4 sm:px-24`}>
         <Providers>
           <ToastContainer />
           <Header />

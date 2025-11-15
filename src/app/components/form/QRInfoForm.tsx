@@ -1,12 +1,6 @@
 'use client'
 
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  RefObject,
-} from 'react'
+import React, { useState, useRef, useCallback, useEffect, RefObject } from 'react'
 import TextInput from '@/app/components/form/components/TextInput'
 import QRCodeSvg from '../QRCodeSvg'
 import Button from './components/Button'
@@ -17,10 +11,7 @@ import NumberInput from './components/NumberInput'
 import { ChromePicker, ColorResult } from 'react-color'
 import { ErrorCorrectionLevel, IImageSettings } from '@/app/types'
 import ImageUpload from './components/ImageUpload'
-import {
-  errorCorrectionLevelOptions,
-  urlRegex,
-} from '@/app/constants/constants'
+import { errorCorrectionLevelOptions, urlRegex } from '@/app/constants/constants'
 import Select from './components/Select'
 
 export default function QRInfoForm() {
@@ -87,16 +78,13 @@ export default function QRInfoForm() {
     img.src = `data:image/svg+xml;base64,${btoa(svgData)}`
   }
 
-  const handleColorChange = useCallback(
-    (color: ColorResult, type: 'fg' | 'bg') => {
-      if (type === 'fg') {
-        setForegroundColour(color.hex)
-      } else if (type === 'bg') {
-        setBackgroundColour(color.hex)
-      }
-    },
-    []
-  )
+  const handleColorChange = useCallback((color: ColorResult, type: 'fg' | 'bg') => {
+    if (type === 'fg') {
+      setForegroundColour(color.hex)
+    } else if (type === 'bg') {
+      setBackgroundColour(color.hex)
+    }
+  }, [])
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -116,12 +104,10 @@ export default function QRInfoForm() {
   }
 
   const collapseHeader = (
-    <div className="flex justify-center p-2">
-      <span className="text-2xl font-semibold w-full">
-        Customise your code!
-      </span>
+    <div className='flex justify-center p-2'>
+      <span className='w-full text-2xl font-semibold'>Customise your code!</span>
       <div
-        className={`transform transition-transform duration-500 pt-[6px] ${
+        className={`transform pt-[6px] transition-transform duration-500 ${
           isOptionsOpen ? 'rotate-180' : ''
         }`}
       >
@@ -141,31 +127,25 @@ export default function QRInfoForm() {
       : undefined
 
   const customstaiseForm = (
-    <div className="flex flex-col gap-6 p-4">
+    <div className='flex flex-col gap-6 p-4'>
       <NumberInput
-        id="size"
-        label="Size (px)"
+        id='size'
+        label='Size (px)'
         min={1}
         max={10000}
         value={size}
         setValue={setSize}
       />
-      <div className="flex flex-col gap-4">
-        <div
-          onClick={() => setBgPickerOpen((prevState) => !prevState)}
-          ref={bgPickerContainerRef}
-        >
+      <div className='flex flex-col gap-4'>
+        <div onClick={() => setBgPickerOpen((prevState) => !prevState)} ref={bgPickerContainerRef}>
           <TextInput
-            id="bgColour"
-            label="Background Colour"
+            id='bgColour'
+            label='Background Colour'
             setValue={setBackgroundColour}
             value={backgroundColour}
           />
         </div>
-        <div
-          className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`}
-          ref={bgPickerRef}
-        >
+        <div className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`} ref={bgPickerRef}>
           {typeof window !== 'undefined' && (
             <React.Suspense fallback={<div />}>
               <ChromePicker
@@ -176,26 +156,23 @@ export default function QRInfoForm() {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className='flex flex-col gap-4'>
         <div
           onClick={(e) => {
             e.stopPropagation()
             setFgPickerOpen((prevState) => !prevState)
           }}
-          className="color-picker-container"
+          className='color-picker-container'
           ref={fgPickerContainerRef}
         >
           <TextInput
-            id="fgColour"
-            label="Foreground Colour"
+            id='fgColour'
+            label='Foreground Colour'
             setValue={setForegroundColour}
             value={foregroundColour}
           />
         </div>
-        <div
-          className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`}
-          ref={fgPickerRef}
-        >
+        <div className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`} ref={fgPickerRef}>
           {typeof window !== 'undefined' && (
             <React.Suspense fallback={<div />}>
               <ChromePicker
@@ -207,15 +184,15 @@ export default function QRInfoForm() {
         </div>
       </div>
       <Select
-        label="Error Correction Level"
+        label='Error Correction Level'
         options={errorCorrectionLevelOptions}
         value={errorCorrectionLevel}
         setValue={setErrorCorrectionLevel}
-        tooltip="Error Correction Level determines how much damage the code can sustain while remaining scannable. Levels range from L (7% recovery) to H (30%)."
-        tooltipType="info"
+        tooltip='Error Correction Level determines how much damage the code can sustain while remaining scannable. Levels range from L (7% recovery) to H (30%).'
+        tooltipType='info'
       />
       <div>
-        <h2 className="text-lg font-semibold mb-2">QR Code Logo</h2>
+        <h2 className='mb-2 text-lg font-semibold'>QR Code Logo</h2>
         <ImageUpload
           handleImageUpload={handleImageUpload}
           setRemoveImage={() => setImgSrc(undefined)}
@@ -225,8 +202,8 @@ export default function QRInfoForm() {
         <>
           <div>
             <NumberInput
-              id="imgHeight"
-              label="Logo Height (px)"
+              id='imgHeight'
+              label='Logo Height (px)'
               value={imgHeight}
               setValue={setImgHeight}
               max={size}
@@ -235,8 +212,8 @@ export default function QRInfoForm() {
           </div>
           <div>
             <NumberInput
-              id="imgWidth"
-              label="Logo Width (px)"
+              id='imgWidth'
+              label='Logo Width (px)'
               value={imgWidth}
               setValue={setImgWidth}
               max={size}
@@ -274,33 +251,29 @@ export default function QRInfoForm() {
   const imageSettingsProp = imageSettings
 
   return (
-    <div className="flex justify-evenly gap-8 flex-col sm:flex-row">
-      <div className="sm:w-1/2 w-full text-center mt-4">
+    <div className='flex flex-col justify-evenly gap-8 sm:flex-row'>
+      <div className='mt-4 w-full text-center sm:w-1/2'>
         <Collapsible
           trigger={collapseHeader}
-          triggerClassName="trigger-closed"
-          triggerOpenedClassName="trigger-open"
+          triggerClassName='trigger-closed'
+          triggerOpenedClassName='trigger-open'
           onOpening={() => setIsOptionsOpen(true)}
           onClosing={() => setIsOptionsOpen(false)}
         >
           {customstaiseForm}
         </Collapsible>
       </div>
-      <div
-        className={`sm:w-1/2 w-full mb-12  ${url ? 'flex flex-col gap-8' : ''}`}
-      >
+      <div className={`mb-12 w-full sm:w-1/2 ${url ? 'flex flex-col gap-8' : ''}`}>
         <TextInput
-          id="url-input"
-          label="QR Code URL"
+          id='url-input'
+          label='QR Code URL'
           value={url}
           setValue={setUrl}
-          containerClassName="pb-2 text-center"
-          placeholder="e.g. google.com"
+          containerClassName='pb-2 text-center'
+          placeholder='e.g. google.com'
         />
         {url && !url.match(urlRegex) && (
-          <span className="text-secondary">
-            Please enter a valid url, for example, google.com
-          </span>
+          <span className='text-secondary'>Please enter a valid url, for example, google.com</span>
         )}
         {url && url.match(urlRegex) && (
           <QRCodeSvg
@@ -314,7 +287,7 @@ export default function QRInfoForm() {
           />
         )}
         {url && url.match(urlRegex) && (
-          <Button label="Download QR Code" onClick={handleDownloadQrCode} />
+          <Button label='Download QR Code' onClick={handleDownloadQrCode} />
         )}
       </div>
     </div>

@@ -1,28 +1,25 @@
-import { IButtonProps } from "@/app/types";
-import React from "react";
+import { IButtonProps } from '@/app/types'
+import React from 'react'
 
 export default function Button({
   label,
   onClick,
-  variant = "primary",
+  variant = 'primary',
   fullWidth,
   className,
   disable,
 }: IButtonProps) {
-  const style =
-    variant === "primary"
-      ? "border-white bg-primaryDark "
-      : "border-secondary ";
+  const style = variant === 'primary' ? 'border-white bg-primaryDark ' : 'border-secondary '
   return (
     <button
       onClick={onClick}
-      className={`hover:brightness-90 font-bold text-md p-2 border-2 rounded-xl transition-all duration-800 disabled:hover:brightness-100 disabled:cursor-not-allowed disabled:bg-slate-500  ${style} ${
-        fullWidth ? "w-full" : ""
+      className={`text-md duration-800 rounded-xl border-2 p-2 font-bold transition-all hover:brightness-90 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:hover:brightness-100 ${style} ${
+        fullWidth ? 'w-full' : ''
       } ${className}`}
-      type="submit"
+      type='submit'
       disabled={disable}
     >
       {label}
     </button>
-  );
+  )
 }

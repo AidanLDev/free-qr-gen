@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { IImageUpload } from '@/app/types'
 
-export default function ImageUpload({
-  handleImageUpload,
-  setRemoveImage,
-}: IImageUpload) {
+export default function ImageUpload({ handleImageUpload, setRemoveImage }: IImageUpload) {
   const [previewUrl, setPreviewUrl] = useState<string>('')
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,45 +22,39 @@ export default function ImageUpload({
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className='flex flex-col items-center'>
       <label
-        htmlFor="image-upload"
-        className="w-32 h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors"
+        htmlFor='image-upload'
+        className='flex h-32 w-32 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 transition-colors hover:border-blue-500'
       >
         {previewUrl ? (
-          <Image
-            src={previewUrl}
-            alt="Preview"
-            width={100}
-            height={100}
-            objectFit="contain"
-          />
+          <Image src={previewUrl} alt='Preview' width={100} height={100} objectFit='contain' />
         ) : (
           <>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-10 w-10 text-gray-400'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M12 4v16m8-8H4"
+                d='M12 4v16m8-8H4'
               />
             </svg>
-            <span className="mt-2 text-sm text-primary">Upload Logo</span>
+            <span className='mt-2 text-sm text-primary'>Upload Logo</span>
           </>
         )}
       </label>
       <input
-        id="image-upload"
-        type="file"
-        accept="image/*"
+        id='image-upload'
+        type='file'
+        accept='image/*'
         onChange={handleFileChange}
-        className="hidden"
+        className='hidden'
       />
       {previewUrl && (
         <button
@@ -71,7 +62,7 @@ export default function ImageUpload({
             setPreviewUrl('')
             setRemoveImage()
           }}
-          className="mt-2 text-sm text-red-500 hover:text-red-700"
+          className='mt-2 text-sm text-red-500 hover:text-red-700'
         >
           Remove
         </button>

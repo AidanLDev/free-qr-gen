@@ -12,8 +12,8 @@ export default function BuyMeACoffeeButton() {
   return (
     <button className={styles.bmcButton} onClick={handleClick}>
       <Image
-        src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-        alt="Buy me a coffee"
+        src='https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg'
+        alt='Buy me a coffee'
         width={24}
         height={24}
         unoptimized

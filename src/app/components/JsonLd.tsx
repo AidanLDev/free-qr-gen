@@ -25,8 +25,8 @@ const jsonLd = {
 export default function JsonLd() {
   return (
     <Script
-      id="json-ld"
-      type="application/ld+json"
+      id='json-ld'
+      type='application/ld+json'
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   )

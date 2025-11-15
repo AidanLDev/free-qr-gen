@@ -17,7 +17,7 @@ export default function QRCodeSvg({
   return (
     <div
       ref={svgRef}
-      className="self-center max-w-[500px] max-h-[500px]"
+      className='max-h-[500px] max-w-[500px] self-center'
       style={{ width: `${displaySize}px`, height: `${displaySize}px` }}
     >
       <QRCodeSVG

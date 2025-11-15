@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useLayoutEffect,
-  useEffect,
-  useRef,
-  ReactNode,
-} from 'react'
+import React, { useState, useLayoutEffect, useEffect, useRef, ReactNode } from 'react'
 
 interface CollapsibleProps {
   trigger: ReactNode
@@ -42,17 +36,11 @@ export default function Collapsible({
   }, [isOpen, children])
 
   return (
-    <div className="rounded-lg overflow-hidden">
+    <div className='overflow-hidden rounded-lg'>
       <div
-        className={`
-          cursor-pointer select-none
-          transition-all duration-200 ease-in-out
-          hover:bg-opacity-80
-          ${triggerClassName}
-          ${isOpen ? triggerOpenedClassName : ''}
-        `}
+        className={`cursor-pointer select-none transition-all duration-200 ease-in-out hover:bg-opacity-80 ${triggerClassName} ${isOpen ? triggerOpenedClassName : ''} `}
         onClick={() => setIsOpen((s) => !s)}
-        role="button"
+        role='button'
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -61,19 +49,19 @@ export default function Collapsible({
           }
         }}
         aria-expanded={isOpen}
-        aria-controls="collapsible-content"
+        aria-controls='collapsible-content'
       >
         {trigger}
       </div>
       <div
-        id="collapsible-content"
+        id='collapsible-content'
         style={{
           height: `${height}px`,
           overflow: 'hidden',
           transition: 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       >
-        <div ref={contentRef} className="transition-opacity duration-200">
+        <div ref={contentRef} className='transition-opacity duration-200'>
           {children}
         </div>
       </div>

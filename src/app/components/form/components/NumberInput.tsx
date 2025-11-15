@@ -13,11 +13,7 @@ export default function NumberInput({
   setFocus,
 }: INumberInputProps) {
   return (
-    <div
-      className={`${
-        containerClassName ? containerClassName : ''
-      } flex flex-col gap-1`}
-    >
+    <div className={`${containerClassName ? containerClassName : ''} flex flex-col gap-1`}>
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
@@ -32,10 +28,10 @@ export default function NumberInput({
         }}
         className={`${
           inputClassName ? inputClassName : ''
-        } text-black px-1 py-2 rounded-md focus:border-primary focus:outline-primary focus-within:border-primary focus-within:outline-primary`}
-        type="number"
-        inputMode="numeric"
-        pattern="[0-9]"
+        } rounded-md px-1 py-2 text-black focus-within:border-primary focus-within:outline-primary focus:border-primary focus:outline-primary`}
+        type='number'
+        inputMode='numeric'
+        pattern='[0-9]'
         onFocus={() => setFocus && setFocus(true)}
         onBlur={() => setFocus && setFocus(false)}
         min={min}

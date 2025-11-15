@@ -16,9 +16,7 @@ export default function TextArea({
   const autoHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto'
-      textareaRef.current.style.height = `${
-        textareaRef.current.scrollHeight || '40'
-      }px`
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight || '40'}px`
     }
   }
 
@@ -31,7 +29,7 @@ export default function TextArea({
       <label htmlFor={id}>{label}</label>
       <textarea
         ref={textareaRef}
-        className={`${inputClassName} text-black px-1 py-2 rounded-md focus:border-primary focus:outline-primary focus-within:border-primary focus-within:outline-primary`}
+        className={`${inputClassName} rounded-md px-1 py-2 text-black focus-within:border-primary focus-within:outline-primary focus:border-primary focus:outline-primary`}
         value={value}
         onChange={(e) => {
           setValue(e.target.value)

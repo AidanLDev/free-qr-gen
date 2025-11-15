@@ -16,10 +16,9 @@ export default function SupportMe() {
 
   const handleSubscribe = async () => {
     if (!email) {
-      toast(
-        'Please enter an email address you would like us to send the news letter to',
-        { type: 'info' }
-      )
+      toast('Please enter an email address you would like us to send the news letter to', {
+        type: 'info',
+      })
       return
     }
 
@@ -47,49 +46,31 @@ export default function SupportMe() {
 
   return (
     <div>
-      <main className="flex flex-col items-center justify-between sm:pb-24 py-8 gap-3 min-h-[75vh]">
-        <h1 className="text-lg font-bold">
-          Thanks for visiting my QR Gen project!
-        </h1>
-        <div className="flex flex-col items-center gap-4">
-          <h2 className="text-center font-bold">
+      <main className='flex min-h-[75vh] flex-col items-center justify-between gap-3 py-8 sm:pb-24'>
+        <h1 className='text-lg font-bold'>Thanks for visiting my QR Gen project!</h1>
+        <div className='flex flex-col items-center gap-4'>
+          <h2 className='text-center font-bold'>
             Subscribe to email alerts for when new projects are released:
           </h2>
-          <Input
-            value={email}
-            setValue={setEmail}
-            label="Email"
-            id="Email"
-            type="email"
-          />
-          <Button
-            label="Subscribe"
-            onClick={async () => await handleSubscribe()}
-          />
+          <Input value={email} setValue={setEmail} label='Email' id='Email' type='email' />
+          <Button label='Subscribe' onClick={async () => await handleSubscribe()} />
         </div>
         <p>
           Take a look at{' '}
-          <Link
-            target="_blank"
-            className="link-style"
-            href="https://aidanlowson.com"
-          >
+          <Link target='_blank' className='link-style' href='https://aidanlowson.com'>
             my Portfolio
           </Link>{' '}
           to find out about other things I have worked on in the past
         </p>
-        <p>
-          If you gained value from this site you can always buy me a coffee to
-          show support
-        </p>
+        <p>If you gained value from this site you can always buy me a coffee to show support</p>
         <BuyMeACoffeeButton />
         <p>This directly supports me and helps cover server costs too.</p>
         <p>
           Or if you want to support via{' '}
           <Link
-            target="_blank"
-            className="link-style"
-            href="https://patreon.com/AidanL94?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+            target='_blank'
+            className='link-style'
+            href='https://patreon.com/AidanL94?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink'
           >
             Patreon
           </Link>{' '}
@@ -97,11 +78,7 @@ export default function SupportMe() {
         </p>
         <p>
           You can find me on{' '}
-          <Link
-            target="_blank"
-            className="link-style"
-            href="https://boosty.to/aidanl94/donate"
-          >
+          <Link target='_blank' className='link-style' href='https://boosty.to/aidanl94/donate'>
             Boosty
           </Link>{' '}
           too

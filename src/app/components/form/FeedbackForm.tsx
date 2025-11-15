@@ -22,7 +22,7 @@ export default function FeedbackForm({
             top: document.documentElement.scrollHeight,
             behavior: 'smooth',
           }),
-        200
+        200,
       )
       return () => clearTimeout(timeoutId)
     }
@@ -46,16 +46,14 @@ export default function FeedbackForm({
   }
   return (
     <div
-      className={`border-2 border-slate-700 rounded-md max-w-80 p-4 overflow-hidden feedback-form-wrapper sm:mb-0 mb-12 text-xl ${
+      className={`feedback-form-wrapper mb-12 max-w-80 overflow-hidden rounded-md border-2 border-slate-700 p-4 text-xl sm:mb-0 ${
         feedbackFormOpen ? 'open' : ''
       }`}
     >
-      <div className="flex justify-center">
-        <h1 className="text-lg font-bold text-center text-primary w-full">
-          Get in touch!
-        </h1>
+      <div className='flex justify-center'>
+        <h1 className='w-full text-center text-lg font-bold text-primary'>Get in touch!</h1>
         <MdClose
-          className="cursor-pointer w-[24px] h-[24px] text-white"
+          className='h-[24px] w-[24px] cursor-pointer text-white'
           onClick={() => {
             setFeedback('')
             setFeedbackFormOpen(false)
@@ -64,22 +62,17 @@ export default function FeedbackForm({
           height={28}
         />
       </div>
-      <div className="flex flex-col gap-4 text-center">
-        <p className="py-2">Spotted an issue? Let me know and I will fix it!</p>
-        <div className="flex flex-col gap-4 text-center">
-          <TextArea
-            value={feedback}
-            setValue={setFeedback}
-            id="feedback"
-            label="Feedback:"
-          />
+      <div className='flex flex-col gap-4 text-center'>
+        <p className='py-2'>Spotted an issue? Let me know and I will fix it!</p>
+        <div className='flex flex-col gap-4 text-center'>
+          <TextArea value={feedback} setValue={setFeedback} id='feedback' label='Feedback:' />
           <Button
-            label="Submit Feedback"
-            className="max-w-[75%] self-center"
+            label='Submit Feedback'
+            className='max-w-[75%] self-center'
             onClick={async () => await handleSubmitFeedback()}
           />
         </div>
-        <p className="text-center py-2">I am a human, please do be kind 💖</p>
+        <p className='py-2 text-center'>I am a human, please do be kind 💖</p>
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ export default function Select({
   tooltipType,
 }: ISelectProps) {
   const SelectLabel = (
-    <label htmlFor={label} className="block mb-2 dark:text-white">
+    <label htmlFor={label} className='mb-2 block dark:text-white'>
       {label}
     </label>
   )
@@ -25,19 +25,19 @@ export default function Select({
             variant={tooltipType}
             id={`${label}-tooltip`}
             content={tooltip}
-            place="top"
+            place='top'
             style={{
               maxWidth: '400px',
               whiteSpace: 'normal',
             }}
-            className="custom-tooltip"
+            className='custom-tooltip'
           />
           <div
             data-tooltip-id={`${label}-tooltip`}
-            className="flex justify-center items-center gap-4"
+            className='flex items-center justify-center gap-4'
           >
             {SelectLabel}
-            <IoInformationCircleOutline className="mb-[7px]" />
+            <IoInformationCircleOutline className='mb-[7px]' />
           </div>
         </>
       ) : (
@@ -47,9 +47,9 @@ export default function Select({
         id={label}
         value={value ?? ''}
         onChange={(e) => setValue(e.target.value)}
-        className="bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 ark:bg-dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-primary dark:focus:border-primary text-black"
+        className='ark:bg-dark:border-gray-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-black focus:border-primary focus:ring-primary dark:placeholder-gray-400 dark:focus:border-primary dark:focus:ring-primary'
       >
-        <option value="" disabled>
+        <option value='' disabled>
           {`Please select ${label}`}
         </option>
         {Object.entries(options).map(([key, value]) => (

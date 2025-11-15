@@ -12,8 +12,7 @@ export default defineConfig({
   },
   webServer: {
     // Try pnpm if available, otherwise fall back to npm
-    command:
-      'sh -c "command -v pnpm >/dev/null 2>&1 && pnpm dev || npm run dev"',
+    command: 'sh -c "command -v pnpm >/dev/null 2>&1 && pnpm dev || npm run dev"',
     url: 'http://localhost:3000',
     reuseExistingServer: true,
     timeout: 120_000,

@@ -6,6 +6,6 @@ test('home shows main heading', async ({ page }) => {
     page.getByRole('heading', {
       level: 1,
       name: 'Welcome! Generate a free QR Code',
-    })
+    }),
   ).toBeVisible()
 })

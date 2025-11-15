@@ -22,15 +22,8 @@ export default $config({
       },
       permissions: [
         {
-          actions: [
-            'dynamodb:PutItem',
-            'dynamodb:GetItem',
-            'dynamodb:Query',
-            'dynamodb:Scan',
-          ],
-          resources: [
-            'arn:aws:dynamodb:us-east-1:136597286325:table/NewsLetterSubscribers',
-          ],
+          actions: ['dynamodb:PutItem', 'dynamodb:GetItem', 'dynamodb:Query', 'dynamodb:Scan'],
+          resources: ['arn:aws:dynamodb:us-east-1:136597286325:table/NewsLetterSubscribers'],
         },
       ],
     })

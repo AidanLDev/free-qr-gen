@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { validateEmail } from '@/app/lib/helpers'
-import {
-  DynamoDBClient,
-  PutItemCommand,
-  PutItemCommandInput,
-} from '@aws-sdk/client-dynamodb'
+import { DynamoDBClient, PutItemCommand, PutItemCommandInput } from '@aws-sdk/client-dynamodb'
 import { randomUUID } from 'crypto'
 
 const dynamoClient = new DynamoDBClient({ region: 'us-east-1' })
@@ -18,7 +14,7 @@ async function handler(req: NextRequest) {
       {
         message: 'Invalid email address',
       },
-      { status: 400 }
+      { status: 400 },
     )
   }
   // Email validation
@@ -44,13 +40,10 @@ async function handler(req: NextRequest) {
         },
         {
           status: 200,
-        }
+        },
       )
     } else {
-      return NextResponse.json(
-        { message: 'Failed to put item into Dynamo' },
-        { status: 500 }
-      )
+      return NextResponse.json({ message: 'Failed to put item into Dynamo' }, { status: 500 })
     }
   } catch (err) {
     console.error(err)
