@@ -20,6 +20,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.936.0",
     "@next/third-parties": "16.0.3",
+    "@sentry/nextjs": "^10",
     "babel-plugin-react-compiler": "^1.0.0",
     "breakpoint-hooks": "^1.0.2",
     "date-fns": "^4.1.0",
