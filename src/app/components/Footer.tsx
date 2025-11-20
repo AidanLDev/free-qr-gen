@@ -2,18 +2,12 @@
 
 import React, { useState } from 'react'
 import FeedbackForm from './form/FeedbackForm'
-import BuyMeACoffeeButton from './BuyMeACoffeeButton/BuyMeACoffeeButton'
-import Link from 'next/link'
-import { FaLongArrowAltRight, FaBug } from 'react-icons/fa'
+import { FaBug } from 'react-icons/fa'
 import { format } from 'date-fns'
 
-interface IFooterProps {
-  supportMe?: boolean
-}
-
-export default function Footer({ supportMe }: IFooterProps) {
+export default function Footer() {
   const [formOpen, setFormOpen] = useState(false)
-  const year = typeof window !== 'undefined' ? format(new Date(), 'yyyy') : ''
+  const year = format(new Date(), 'yyyy')
 
   return (
     <>
@@ -30,16 +24,7 @@ export default function Footer({ supportMe }: IFooterProps) {
           </span>
           <FaBug className='cursor-pointer text-primary hover:underline' />
         </div>
-        {<BuyMeACoffeeButton />}
-        {
-          <Link href={supportMe ? '/' : '/support-me'} className='md:self-baseline'>
-            <div className='flex items-center gap-1'>
-              <span className='link-style'>{supportMe ? 'BackHome' : 'Support Me'}</span>
-              <FaLongArrowAltRight className='cursor-pointer text-primary hover:underline' />
-            </div>
-          </Link>
-        }
-        {<span className='md:self-baseline'>© Aidan Lowson - {year}</span>}
+        <span className='md:self-baseline'>© Aidan Lowson - {year}</span>
       </footer>
     </>
   )

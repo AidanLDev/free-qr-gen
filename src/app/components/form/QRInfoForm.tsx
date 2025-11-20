@@ -8,7 +8,14 @@ import { toast } from 'react-toastify'
 import Collapsible from '../Collapsible'
 import { FaChevronDown } from 'react-icons/fa'
 import NumberInput from './components/NumberInput'
-import { ChromePicker, ColorResult } from 'react-color'
+import { ColorResult } from 'react-color'
+import dynamic from 'next/dynamic'
+
+// ChromePicker depends on browser globals - only render on client
+// Next dynamic import with ssr:false prevents server-side rendering
+const ChromePicker = dynamic(() => import('react-color').then((mod) => mod.ChromePicker), {
+  ssr: false,
+})
 import { ErrorCorrectionLevel, IImageSettings } from '@/app/types'
 import ImageUpload from './components/ImageUpload'
 import { errorCorrectionLevelOptions, urlRegex } from '@/app/constants/constants'
@@ -104,7 +111,7 @@ export default function QRInfoForm() {
   }
 
   const collapseHeader = (
-    <div className='flex justify-center p-2'>
+    <div className='flex justify-center rounded-lg border-2 border-slate-500 p-2'>
       <span className='w-full text-2xl font-semibold'>Customise your code!</span>
       <div
         className={`transform pt-[6px] transition-transform duration-500 ${
@@ -146,14 +153,10 @@ export default function QRInfoForm() {
           />
         </div>
         <div className={`chrome-picker-wrapper ${bgPickerOpen ? 'open' : ''}`} ref={bgPickerRef}>
-          {typeof window !== 'undefined' && (
-            <React.Suspense fallback={<div />}>
-              <ChromePicker
-                color={backgroundColour}
-                onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
-              />
-            </React.Suspense>
-          )}
+          <ChromePicker
+            color={backgroundColour}
+            onChange={(colourRes) => handleColorChange(colourRes, 'bg')}
+          />
         </div>
       </div>
       <div className='flex flex-col gap-4'>
@@ -173,14 +176,10 @@ export default function QRInfoForm() {
           />
         </div>
         <div className={`chrome-picker-wrapper ${fgPickerOpen ? 'open' : ''}`} ref={fgPickerRef}>
-          {typeof window !== 'undefined' && (
-            <React.Suspense fallback={<div />}>
-              <ChromePicker
-                color={foregroundColour}
-                onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
-              />
-            </React.Suspense>
-          )}
+          <ChromePicker
+            color={foregroundColour}
+            onChange={(colourRes) => handleColorChange(colourRes, 'fg')}
+          />
         </div>
       </div>
       <Select
@@ -252,7 +251,7 @@ export default function QRInfoForm() {
 
   return (
     <div className='flex flex-col justify-evenly gap-8 sm:flex-row'>
-      <div className='mt-4 w-full text-center sm:w-1/2'>
+      <div className='mt-[2.15rem] w-full text-center sm:w-1/2'>
         <Collapsible
           trigger={collapseHeader}
           triggerClassName='trigger-closed'

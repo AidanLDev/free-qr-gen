@@ -18,7 +18,7 @@
     "test:e2e-open": "playwright test --ui"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.931.0",
+    "@aws-sdk/client-dynamodb": "^3.936.0",
     "@next/third-parties": "16.0.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "breakpoint-hooks": "^1.0.2",
@@ -48,7 +48,7 @@
     "eslint-config-next": "16.0.3",
     "eslint-plugin-react-compiler": "19.0.0-beta-ebf51a3-20250411",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "playwright": "^1.56.1",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
