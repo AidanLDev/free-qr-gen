@@ -19,6 +19,8 @@ export default $config({
         HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
         BASE_URL: 'https://freeqrgen.net',
         EMAIL_PASSWORD: process.env.EMAIL_PASSWORD!,
+        NEXT_PUBLIC_SENTRY_DNS: process.env.NEXT_PUBLIC_SENTRY_DNS!,
+        SENTRY_DNS: process.env.SENTRY_DNS!,
       },
       permissions: [
         {

@@ -44,3 +44,4 @@ jobs:
           HOSTED_ZONE_ID: ${{ secrets.HOSTED_ZONE_ID }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DNS: ${{ secrets.SENTRY_DNS }}
+          NEXT_PUBLIC_SENTRY_DNS: ${{ secrets.SENTRY_DNS }}
