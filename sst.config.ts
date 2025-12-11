@@ -21,6 +21,7 @@ export default $config({
         EMAIL_PASSWORD: process.env.EMAIL_PASSWORD!,
         NEXT_PUBLIC_SENTRY_DNS: process.env.NEXT_PUBLIC_SENTRY_DNS!,
         SENTRY_DNS: process.env.SENTRY_DNS!,
+        NODE_ENV: 'production',
       },
       permissions: [
         {
