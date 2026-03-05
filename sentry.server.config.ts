@@ -16,4 +16,7 @@ Sentry.init({
   // Enable sending user PII (Personally Identifiable Information)
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
   sendDefaultPii: true,
+
+  // Disable all integrations to avoid OpenTelemetry "Cannot set property logger" crash on Node.js 22
+  integrations: [],
 })

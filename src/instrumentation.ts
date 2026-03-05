@@ -1,13 +1,12 @@
-import * as Sentry from '@sentry/nextjs'
-
 export async function register() {
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    await import('../sentry.server.config')
-  }
-
-  if (process.env.NEXT_RUNTIME === 'edge') {
-    await import('../sentry.edge.config')
-  }
+  // Sentry server-side disabled due to OpenTelemetry "Cannot set property logger" crash on Node.js 22.0.0
+  // Re-enable after updating Node.js to >= 22.11 or when Sentry fixes the compatibility issue
 }
 
-export const onRequestError = Sentry.captureRequestError
+export function onRequestError(
+  ...args: Parameters<typeof import('@sentry/nextjs').captureRequestError>
+) {
+  import('@sentry/nextjs').then((Sentry) => {
+    Sentry.captureRequestError(...args)
+  })
+}

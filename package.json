@@ -4,7 +4,7 @@
   "author": "Aidan Lowson <dev@aidanlowson.com>",
   "license": "MIT",
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "deploy": "sst deploy --stage production",
     "dev": "next dev --turbo",
     "lint": "eslint .",
@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.948.0",
-    "@next/third-parties": "^16.0.10",
-    "@sentry/nextjs": "^10.29.0",
+    "@next/third-parties": "^16.1.6",
+    "@sentry/nextjs": "^10.42.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "breakpoint-hooks": "^1.0.2",
     "date-fns": "^4.1.0",
-    "next": "^16.0.10",
+    "next": "^16.1.6",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^7.0.11",
     "qrcode.react": "^4.2.0",
@@ -34,7 +34,7 @@
     "react-icons": "^5.5.0",
     "react-toastify": "^10.0.6",
     "react-tooltip": "^5.30.0",
-    "sst": "^3.9.28"
+    "sst": "^4.1.10"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
@@ -46,7 +46,7 @@
     "aws-cdk-lib": "^2.232.1",
     "constructs": "^10.4.3",
     "eslint": "^9.39.1",
-    "eslint-config-next": "^16.0.10",
+    "eslint-config-next": "^16.1.6",
     "eslint-plugin-react-compiler": "19.0.0-beta-ebf51a3-20250411",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
