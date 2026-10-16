@@ -46,33 +46,34 @@ export default function FeedbackForm({
   }
   return (
     <div
-      className={`feedback-form-wrapper mb-12 max-w-80 overflow-hidden rounded-md border-2 border-slate-700 p-4 text-xl sm:mb-0 ${
+      className={`feedback-form-wrapper card w-full max-w-md overflow-hidden ${
         feedbackFormOpen ? 'open' : ''
       }`}
     >
-      <div className='flex justify-center'>
-        <h1 className='w-full text-center text-lg font-bold text-primary'>Get in touch!</h1>
-        <MdClose
-          className='h-[24px] w-[24px] cursor-pointer text-white'
+      <div className='flex items-center justify-between'>
+        <h2 className='text-lg font-semibold text-white'>Get in touch!</h2>
+        <button
+          type='button'
+          aria-label='Close feedback form'
+          className='rounded-md p-1 text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-white'
           onClick={() => {
             setFeedback('')
             setFeedbackFormOpen(false)
           }}
-          width={28}
-          height={28}
-        />
+        >
+          <MdClose size={22} />
+        </button>
       </div>
-      <div className='flex flex-col gap-4 text-center'>
-        <p className='py-2'>Spotted an issue? Let me know and I will fix it!</p>
-        <div className='flex flex-col gap-4 text-center'>
-          <TextArea value={feedback} setValue={setFeedback} id='feedback' label='Feedback:' />
-          <Button
-            label='Submit Feedback'
-            className='max-w-[75%] self-center'
-            onClick={async () => await handleSubmitFeedback()}
-          />
-        </div>
-        <p className='py-2 text-center'>I am a human, please do be kind 💖</p>
+      <p className='mt-1 text-sm text-neutral-400'>
+        Spotted an issue? Let me know and I will fix it! I am a human, please do be kind 💖
+      </p>
+      <div className='mt-4 flex flex-col gap-4'>
+        <TextArea value={feedback} setValue={setFeedback} id='feedback' label='Feedback' />
+        <Button
+          label='Submit feedback'
+          className='self-end'
+          onClick={async () => await handleSubmitFeedback()}
+        />
       </div>
     </div>
   )

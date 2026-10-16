@@ -1,10 +1,8 @@
 // Interfaces
 
-import { Dispatch, MutableRefObject, SetStateAction } from 'react'
+import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react'
 
 export type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H'
-
-export type TooltipVarient = 'dark' | 'light' | 'success' | 'warning' | 'error' | 'info'
 
 export interface ITextInput {
   id: string
@@ -16,6 +14,7 @@ export interface ITextInput {
   containerClassName?: string
   setFocus?: Dispatch<SetStateAction<boolean>>
   placeholder?: string
+  error?: string
 }
 
 export interface IImageSettings {
@@ -42,7 +41,8 @@ export interface IButtonProps {
   label: string
   onClick: React.MouseEventHandler<HTMLButtonElement>
   variant?: 'primary' | 'secondary'
-  type?: 'submit'
+  type?: 'button' | 'submit'
+  icon?: ReactNode
   fullWidth?: boolean
   className?: string
   disable?: boolean
@@ -58,16 +58,20 @@ export interface INumberInputProps {
   inputClassName?: string
   containerClassName?: string
   setFocus?: Dispatch<SetStateAction<boolean>>
+  suffix?: string
 }
 
-export interface IColourPickerProps {
-  onChange: ((newColor: string) => void) | undefined
-  color: string
+export interface IColourInputProps {
+  id: string
+  label: string
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
 }
 
 export interface IImageUpload {
-  handleImageUpload: (param: any) => void
-  setRemoveImage: () => void
+  src?: string
+  onFileSelected: (file: File) => void
+  onRemove: () => void
 }
 
 export interface IFeedbackFormProps {
@@ -85,12 +89,16 @@ export interface ITextAreaProps {
   setFocus?: Dispatch<SetStateAction<boolean>>
 }
 
-export interface ISelectProps {
-  label: string
-  options: Record<string, string>
-  value: string
-  setValue: Dispatch<SetStateAction<string>>
-  className?: string
-  tooltip?: string
-  tooltipType?: TooltipVarient
+export interface IErrorCorrectionPickerProps {
+  value: ErrorCorrectionLevel
+  setValue: Dispatch<SetStateAction<ErrorCorrectionLevel>>
+}
+
+export interface IQrPreviewProps {
+  url?: string
+  size: number
+  bgColour: string
+  fgColour: string
+  imageSettings?: IImageSettings
+  errorCorrectionLevel: ErrorCorrectionLevel
 }

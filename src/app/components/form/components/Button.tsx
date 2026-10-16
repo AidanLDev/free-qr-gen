@@ -5,20 +5,26 @@ export default function Button({
   label,
   onClick,
   variant = 'primary',
+  type = 'button',
+  icon,
   fullWidth,
   className,
   disable,
 }: IButtonProps) {
-  const style = variant === 'primary' ? 'border-white bg-primaryDark ' : 'border-secondary '
+  const style =
+    variant === 'primary'
+      ? 'bg-primary text-neutral-950 hover:bg-primary/90'
+      : 'border border-neutral-700 text-neutral-100 hover:bg-neutral-800'
   return (
     <button
       onClick={onClick}
-      className={`text-md duration-800 rounded-xl border-2 p-2 font-bold transition-all hover:brightness-90 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:hover:brightness-100 ${style} ${
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 disabled:cursor-not-allowed disabled:opacity-40 ${style} ${
         fullWidth ? 'w-full' : ''
-      } ${className}`}
-      type='submit'
+      } ${className ?? ''}`}
+      type={type}
       disabled={disable}
     >
+      {icon}
       {label}
     </button>
   )

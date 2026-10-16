@@ -4,19 +4,25 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <header className='flex w-full flex-wrap justify-center gap-4 pt-8 sm:flex-nowrap sm:gap-16'>
-      <Link className='hidden cursor-pointer sm:inline' href='/'>
+    <header className='mx-auto flex w-full max-w-5xl items-center gap-4 pt-8 sm:gap-6 sm:pt-12'>
+      <Link className='shrink-0' href='/'>
         <Image
           alt='Free QR Gen Logo'
           src='/FreeQRGenLogo.webp'
           width={150}
           height={120}
-          className='hidden cursor-pointer rounded-xl sm:inline'
+          priority
+          className='h-12 w-auto rounded-xl sm:h-16'
         />
       </Link>
-      <h1 className='flex w-full justify-center pb-6 pt-8 text-center text-3xl font-bold text-primary backdrop-blur-2xl sm:justify-normal md:text-4xl lg:w-auto lg:rounded-xl'>
-        Welcome! Generate a free QR Code
-      </h1>
+      <div>
+        <h1 className='text-balance text-2xl font-bold tracking-tight text-white sm:text-4xl'>
+          Welcome! Generate a <span className='text-primary'>free QR Code</span>
+        </h1>
+        <p className='mt-1 text-sm text-neutral-400 sm:text-base'>
+          Pick your colours, add a logo and download. No sign-up, no watermarks.
+        </p>
+      </div>
     </header>
   )
 }

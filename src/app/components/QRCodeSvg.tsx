@@ -11,22 +11,16 @@ export default function QRCodeSvg({
   svgRef,
   errorCorrectionLevel,
 }: IQrCodeSvgProps) {
-  const qrImageSettings = imageSettings ? imageSettings : undefined
-  const displaySize = size && (size > 300 || size < 300) ? 300 : size // Limit the display size
-
   return (
-    <div
-      ref={svgRef}
-      className='max-h-[500px] max-w-[500px] self-center'
-      style={{ width: `${displaySize}px`, height: `${displaySize}px` }}
-    >
+    // Rendered at full size for download, scaled down to fit the preview
+    <div ref={svgRef} className='h-full w-full'>
       <QRCodeSVG
         value={url}
-        size={size || 128} // Set to full size for download
+        size={size || 128}
         bgColor={bgColour || '#ffffff'}
         fgColor={fgColour || '#000000'}
-        imageSettings={qrImageSettings}
-        style={{ width: '100%', height: '100%' }} // Force full size for container
+        imageSettings={imageSettings}
+        style={{ width: '100%', height: '100%' }}
         level={errorCorrectionLevel}
         marginSize={4}
       />

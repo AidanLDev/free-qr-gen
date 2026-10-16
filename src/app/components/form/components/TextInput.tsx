@@ -11,22 +11,32 @@ export default function Input({
   containerClassName,
   setFocus,
   placeholder,
+  error,
 }: ITextInput) {
   return (
-    <div className={`${containerClassName ? containerClassName : ''} flex flex-col gap-1`}>
-      <label htmlFor={id}>{label}</label>
+    <div className={containerClassName ?? ''}>
+      <label htmlFor={id} className='field-label'>
+        {label}
+      </label>
       <input
         id={id}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className={`${
-          inputClassName ? inputClassName : ''
-        } rounded-md px-1 py-2 text-black focus-within:border-primary focus-within:outline-primary focus:border-primary focus:outline-primary`}
+        className={`input ${
+          error ? 'border-secondary focus:border-secondary focus:ring-secondary/30' : ''
+        } ${inputClassName ?? ''}`}
         type={type}
         onFocus={() => setFocus && setFocus(true)}
         onBlur={() => setFocus && setFocus(false)}
         placeholder={placeholder}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
       />
+      {error && (
+        <p id={`${id}-error`} className='field-warning'>
+          {error}
+        </p>
+      )}
     </div>
   )
 }

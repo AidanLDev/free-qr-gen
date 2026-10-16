@@ -10,22 +10,22 @@ export default function Footer() {
   const year = format(new Date(), 'yyyy')
 
   return (
-    <>
+    <div className='mx-auto w-full max-w-5xl'>
       <div className='flex w-full justify-center'>
         <FeedbackForm feedbackFormOpen={formOpen} setFeedbackFormOpen={setFormOpen} />
       </div>
-      <footer className='flex w-full flex-col items-center justify-between gap-4 md:flex-row md:items-center'>
-        <div
-          className='flex items-center justify-center gap-1 py-2 text-primary md:self-baseline'
+      <footer className='flex w-full flex-col items-center justify-between gap-3 border-t border-neutral-800 pt-6 text-sm text-neutral-500 sm:flex-row'>
+        <button
+          type='button'
+          className='link-style flex items-center gap-2'
           onClick={() => setFormOpen((prevState) => !prevState)}
+          aria-expanded={formOpen}
         >
-          <span className='link-style cursor-pointer text-primary hover:underline'>
-            Feedback/Report a bug
-          </span>
-          <FaBug className='cursor-pointer text-primary hover:underline' />
-        </div>
-        <span className='md:self-baseline'>© Aidan Lowson - {year}</span>
+          Feedback / report a bug
+          <FaBug />
+        </button>
+        <span>© Aidan Lowson - {year}</span>
       </footer>
-    </>
+    </div>
   )
 }

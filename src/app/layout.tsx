@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import 'react-tooltip/dist/react-tooltip.css'
 
 import Providers from './Providers'
 import { ToastContainer } from 'react-toastify'
@@ -78,9 +77,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} min-h-screen px-8 pb-4 sm:px-24`}>
+      <body className={`${inter.className} min-h-screen px-4 pb-6 antialiased sm:px-8`}>
         <Providers>
-          <ToastContainer />
+          <ToastContainer theme='dark' />
           <Header />
           {children}
         </Providers>

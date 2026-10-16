@@ -25,11 +25,13 @@ export default function TextArea({
   }, [value])
 
   return (
-    <div className={`${containerClassName} flex flex-col gap-1`}>
-      <label htmlFor={id}>{label}</label>
+    <div className={containerClassName ?? ''}>
+      <label htmlFor={id} className='field-label'>
+        {label}
+      </label>
       <textarea
         ref={textareaRef}
-        className={`${inputClassName} rounded-md px-1 py-2 text-black focus-within:border-primary focus-within:outline-primary focus:border-primary focus:outline-primary`}
+        className={`input min-h-24 resize-none ${inputClassName ?? ''}`}
         value={value}
         onChange={(e) => {
           setValue(e.target.value)
