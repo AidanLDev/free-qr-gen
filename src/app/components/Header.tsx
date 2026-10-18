@@ -12,6 +12,7 @@ export default function Header() {
           width={150}
           height={120}
           priority
+          unoptimized
           className='h-12 w-auto rounded-xl sm:h-16'
         />
       </Link>
