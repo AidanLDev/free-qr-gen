@@ -1,11 +1,14 @@
 # free-qr-gen
 
+**Live site: [freeqrgen.net](https://freeqrgen.net)**: create a free QR code with your own colours and logo. No sign-up, no watermarks.
+
 Generate and download QR codes quickly — a lightweight Next.js + TypeScript app (deployed with SST) that includes feedback and a newsletter subscription endpoint backed by AWS.
 
 [![License](https://img.shields.io/github/license/AidanLDev/free-qr-gen?style=flat-square)](./LICENSE) [![CI](https://github.com/AidanLDev/free-qr-gen/actions/workflows/ci.yml/badge.svg)](https://github.com/AidanLDev/free-qr-gen/actions)
 
 Quick links
 
+- Live site: https://freeqrgen.net
 - Source: repository root
 - Docs: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`
 

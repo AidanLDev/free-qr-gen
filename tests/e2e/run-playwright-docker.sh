@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # docker image (official Playwright image - specify version to match installed Playwright)
-IMAGE="mcr.microsoft.com/playwright:v1.56.1-jammy"
+IMAGE="mcr.microsoft.com/playwright:v1.64.1-jammy"
 
 # Checking docker cli is available
 if ! command -v docker >/dev/null 2>&1; then

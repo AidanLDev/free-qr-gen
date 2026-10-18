@@ -42,6 +42,34 @@ body {
     @apply mt-1.5 text-sm text-secondary;
   }
 
+  .prose-page {
+    @apply text-base leading-relaxed text-neutral-300;
+  }
+
+  .prose-page h2 {
+    @apply mb-3 mt-10 text-xl font-semibold text-white sm:text-2xl;
+  }
+
+  .prose-page h3 {
+    @apply mb-2 mt-6 text-lg font-semibold text-white;
+  }
+
+  .prose-page p {
+    @apply mb-4;
+  }
+
+  .prose-page ul {
+    @apply mb-4 list-disc space-y-2 pl-6 marker:text-primary;
+  }
+
+  .prose-page a {
+    @apply font-medium text-primary transition-colors hover:underline;
+  }
+
+  .prose-page strong {
+    @apply font-semibold text-white;
+  }
+
   .input {
     @apply w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2.5 text-base text-white transition-colors placeholder:text-neutral-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30;
   }

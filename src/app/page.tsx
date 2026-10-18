@@ -3,15 +3,20 @@ import QRInfoForm from './components/form/QRInfoForm'
 import { Metadata } from 'next'
 import JsonLd from './components/JsonLd'
 import Footer from './components/Footer'
+import { siteUrl } from './constants/constants'
+import Header from './components/Header'
+import HomeInfo from './components/HomeInfo'
+
 export const metadata: Metadata = {
   alternates: {
-    canonical: 'https://freeqrgen.net',
+    canonical: siteUrl,
   },
 }
 
 export default function Home() {
   return (
     <div>
+      <Header />
       <main className='mx-auto min-h-[75vh] w-full max-w-5xl pb-12 pt-8 sm:pb-24 sm:pt-10'>
         <JsonLd />
         <div>
@@ -20,6 +25,7 @@ export default function Home() {
           </React.Suspense>
         </div>
       </main>
+      <HomeInfo />
       <React.Suspense fallback={<div />}>
         <Footer />
       </React.Suspense>

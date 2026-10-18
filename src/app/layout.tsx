@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 
 import './globals.css'
@@ -6,48 +6,38 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import Providers from './Providers'
 import { ToastContainer } from 'react-toastify'
-import Header from './components/Header'
+import { siteUrl } from './constants/constants'
+import { ogImage, siteDescription, siteName, siteTitle } from './lib/metadata'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Free QR Code Generator',
-  description:
-    'Customise and generate a QR code for free! Download and share your links in a convenient fun way.',
-  applicationName: 'Free QR Gen',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteTitle} | ${siteName}`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
   keywords: [
+    'free QR code generator',
     'QR code generator',
-    'Custom QR codes',
-    'QR code creator',
-    'Personalized QR codes',
-    'QR code design',
     'QR code maker',
-    'QR code customization',
-    'Dynamic QR codes',
-    'Branded QR codes',
-    'QR code scanner',
-    'QR code marketing',
-    'QR code solutions',
-    'Colorful QR codes',
-    'Logo QR codes',
-    'QR code analytics',
-    'how to create branded QR codes',
-    'best free QR code generator for marketing',
+    'custom QR code',
+    'QR code with logo',
+    'coloured QR code',
+    'QR code SVG',
+    'QR code PNG',
+    'no sign-up QR code',
   ],
   openGraph: {
-    title: 'Free QR Code Generator',
-    description:
-      'Customise and generate a QR code for free! Download and share your links in a convenient fun way.',
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
     type: 'website',
-    siteName: 'freeqrgen.net',
-    images: [
-      {
-        url: 'https://freeqrgen.net/FreeQRGenCoverImage.png',
-        width: 1200,
-        height: 630,
-        alt: 'Free QR Code Generator Cover Image',
-      },
-    ],
+    siteName,
+    locale: 'en_GB',
+    images: [ogImage],
   },
   robots: {
     index: true,
@@ -55,19 +45,15 @@ export const metadata: Metadata = {
     'max-image-preview': 'large',
     'max-snippet': -1,
     'max-video-preview': -1,
-    googleBot: 'index, follow',
   },
   verification: {
-    google: 'google-site-verification=kyNk7PgQmwiuEPtm2DX7tKsAECvYMbcNNnRTVg9fUc4',
+    google: 'kyNk7PgQmwiuEPtm2DX7tKsAECvYMbcNNnRTVg9fUc4',
   },
-  icons: {
-    icon: [
-      {
-        url: 'https://freeqrgen.net/favicon.ico',
-        type: 'image/x-icon',
-      },
-    ],
-  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({
@@ -76,11 +62,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en-GB'>
       <body className={`${inter.className} min-h-screen px-4 pb-6 antialiased sm:px-8`}>
         <Providers>
           <ToastContainer theme='dark' />
-          <Header />
           {children}
         </Providers>
       </body>

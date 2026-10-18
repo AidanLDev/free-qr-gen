@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
 export default function Header() {
   return (
@@ -18,7 +17,7 @@ export default function Header() {
       </Link>
       <div>
         <h1 className='text-balance text-2xl font-bold tracking-tight text-white sm:text-4xl'>
-          Welcome! Generate a <span className='text-primary'>free QR Code</span>
+          Free <span className='text-primary'>QR Code</span> Generator
         </h1>
         <p className='mt-1 text-sm text-neutral-400 sm:text-base'>
           Pick your colours, add a logo and download. No sign-up, no watermarks.

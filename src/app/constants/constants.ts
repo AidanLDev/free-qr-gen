@@ -17,3 +17,4 @@ export const errorCorrectionLevelOptions: {
 ]
 export const sizePresets = [256, 512, 1024, 2048]
 export const maxLogoFileSize = 10 * 1024 * 1024
+export const siteUrl = `https://${domainName}`

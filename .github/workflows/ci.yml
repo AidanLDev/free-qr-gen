@@ -36,7 +36,3 @@ jobs:
 
       - name: Build
         run: pnpm build
-
-      - name: Postbuild (sitemap)
-        if: success()
-        run: pnpm postbuild

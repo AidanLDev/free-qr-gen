@@ -13,7 +13,7 @@ export default $config({
     new sst.aws.Nextjs('MyWeb', {
       domain: {
         name: 'freeqrgen.net',
-        aliases: ['www.freeqrgen.net'],
+        redirects: ['www.freeqrgen.net'],
       },
       environment: {
         HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
