@@ -25,12 +25,21 @@ export default function Footer() {
           Feedback / report a bug
           <FaBug />
         </button>
-        <nav aria-label='Site' className='flex items-center gap-4'>
+        <nav
+          aria-label='Site'
+          className='flex flex-wrap items-center justify-center gap-x-4 gap-y-2'
+        >
           <Link href='/about' className='transition-colors hover:text-neutral-300'>
             About
           </Link>
           <Link href='/what-is-a-qr-code' className='transition-colors hover:text-neutral-300'>
             What is a QR code?
+          </Link>
+          <Link
+            href='/qr-code-for-restaurant-menu'
+            className='transition-colors hover:text-neutral-300'
+          >
+            Restaurant menu QR codes
           </Link>
         </nav>
         <span>© Aidan Lowson - {year}</span>

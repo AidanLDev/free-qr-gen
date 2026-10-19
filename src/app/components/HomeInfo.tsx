@@ -32,6 +32,19 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
       'PNG works almost everywhere, from websites and social posts to documents. SVG is a vector format that stays sharp at any size, which makes it the better choice for print, posters and signage.',
   },
   {
+    question: 'Can I make a QR code for my restaurant menu?',
+    answer: (
+      <>
+        Yes. Put your menu online, paste the link above, then add your logo and brand colours. Our
+        guide on{' '}
+        <Link href='/qr-code-for-restaurant-menu'>
+          how to make a QR code for your restaurant menu
+        </Link>{' '}
+        covers each step, from choosing a link to printing codes for your tables.
+      </>
+    ),
+  },
+  {
     question: 'Can I track how many people scan my QR code?',
     answer:
       'No. Because the codes are static and do not go through a tracking server, scans are not counted. The upside is that nobody sits between your visitors and your link.',

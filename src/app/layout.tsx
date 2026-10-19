@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     images: [ogImage],
   },
+  twitter: {
+    card: 'summary_large_image',
+  },
   robots: {
     index: true,
     follow: true,

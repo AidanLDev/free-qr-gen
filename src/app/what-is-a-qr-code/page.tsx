@@ -228,8 +228,8 @@ export default function WhatIsAQRCodePage() {
 
       <h3>Sizes and capacity</h3>
       <p>
-        QR codes come in 40 &quot;versions&quot;. Version 1 is a 21 × 21 grid of modules and version
-        40 is 177 × 177. The largest codes can hold up to 7,089 numbers or 4,296 letters and
+        QR codes come in 40 &quot;versions&quot;. Version 1 is a 21 x 21 grid of modules and version
+        40 is 177 x 177. The largest codes can hold up to 7,089 numbers or 4,296 letters and
         numbers. The more data you put in, the denser the grid, which is why short links make
         cleaner codes.
       </p>
@@ -285,6 +285,10 @@ export default function WhatIsAQRCodePage() {
           <strong>Test before you print.</strong> Scan it with a couple of different phones first.
         </li>
       </ul>
+      <p>
+        Making one for a café or restaurant? Follow our step-by-step guide to{' '}
+        <Link href='/qr-code-for-restaurant-menu'>making a QR code for your restaurant menu</Link>.
+      </p>
 
       <h2 id='learn-more'>Where to read and watch more</h2>
       <ul className='!list-none !space-y-3 !pl-0'>

@@ -74,7 +74,7 @@ export default function QRPreview({
         <h2 className='section-title'>Preview</h2>
         {url && (
           <span className='text-xs text-neutral-500'>
-            {size} × {size} px
+            {size} x {size} px
           </span>
         )}
       </div>

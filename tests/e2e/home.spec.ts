@@ -23,3 +23,18 @@ test('footer links to the what is a QR code page', async ({ page }) => {
   await expect(page).toHaveURL('/what-is-a-qr-code')
   await expect(page.getByRole('heading', { level: 1, name: 'What is a QR code?' })).toBeVisible()
 })
+
+test('footer links to the restaurant menu QR code guide', async ({ page }) => {
+  await page.goto('/')
+  await page
+    .getByRole('contentinfo')
+    .getByRole('link', { name: 'Restaurant menu QR codes' })
+    .click()
+  await expect(page).toHaveURL('/qr-code-for-restaurant-menu')
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: 'How to make a QR code for your restaurant menu',
+    }),
+  ).toBeVisible()
+})

@@ -20,11 +20,13 @@ export function pageMetadata({
   description,
   path,
   type = 'website',
+  image = ogImage,
 }: {
   title: string
   description: string
   path: string
   type?: 'website' | 'article'
+  image?: typeof ogImage
 }): Metadata {
   const url = `${siteUrl}${path}`
   return {
@@ -38,7 +40,7 @@ export function pageMetadata({
       type,
       siteName,
       locale: 'en_GB',
-      images: [ogImage],
+      images: [image],
     },
   }
 }
