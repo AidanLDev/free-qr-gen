@@ -14,6 +14,7 @@ export default $config({
       domain: {
         name: 'freeqrgen.net',
         redirects: ['www.freeqrgen.net'],
+        dns: sst.aws.dns({ override: true }),
       },
       environment: {
         HOSTED_ZONE_ID: process.env.HOSTED_ZONE_ID!,
