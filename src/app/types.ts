@@ -4,6 +4,24 @@ import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react'
 
 export type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H'
 
+export type QrType =
+  'url' | 'wifi' | 'vcard' | 'email' | 'sms' | 'phone' | 'whatsapp' | 'text' | 'location'
+
+export interface IFaq {
+  question: string
+  answer: ReactNode
+  // Plain-text version for FAQPage structured data, needed when `answer` contains links
+  text?: string
+}
+
+export interface IStep {
+  title: string
+  body: string
+}
+
+// Raw form values for the selected QR type, keyed by field id
+export type QrFieldValues = Record<string, string>
+
 export interface ITextInput {
   id: string
   label: string
@@ -28,7 +46,7 @@ export interface IImageSettings {
 }
 
 export interface IQrCodeSvgProps {
-  url: string
+  value: string
   size?: number
   bgColour?: string
   fgColour?: string
@@ -87,6 +105,8 @@ export interface ITextAreaProps {
   inputClassName?: string
   containerClassName?: string
   setFocus?: Dispatch<SetStateAction<boolean>>
+  placeholder?: string
+  error?: string
 }
 
 export interface IErrorCorrectionPickerProps {
@@ -95,7 +115,9 @@ export interface IErrorCorrectionPickerProps {
 }
 
 export interface IQrPreviewProps {
-  url?: string
+  value?: string
+  placeholder: string
+  filename: string
   size: number
   bgColour: string
   fgColour: string

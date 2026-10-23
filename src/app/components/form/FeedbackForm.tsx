@@ -65,7 +65,7 @@ export default function FeedbackForm({
         </button>
       </div>
       <p className='mt-1 text-sm text-neutral-400'>
-        Spotted an issue? Let me know and I will fix it! I am a human, please do be kind 💖
+        Spotted an issue? Can think of an improvement? Let me know and I will get on it! - AL
       </p>
       <div className='mt-4 flex flex-col gap-4'>
         <TextArea value={feedback} setValue={setFeedback} id='feedback' label='Feedback' />

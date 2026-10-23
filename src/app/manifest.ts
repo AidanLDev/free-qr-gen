@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Free QR Code Generator',
     short_name: 'Free QR Gen',
-    description: 'Create custom QR codes with your own colours and logo. Free, no sign-up.',
+    description:
+      'Create custom QR codes for links, WiFi, contacts and more, with your own colours and logo. Free, no sign-up.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0a',

@@ -17,7 +17,9 @@ const triggerDownload = (href: string, filename: string) => {
 }
 
 export default function QRPreview({
-  url,
+  value,
+  placeholder,
+  filename,
   size,
   bgColour,
   fgColour,
@@ -53,7 +55,7 @@ export default function QRPreview({
     const img = new Image()
     img.onload = () => {
       context.drawImage(img, 0, 0, size, size)
-      triggerDownload(canvas.toDataURL('image/png'), 'qrcode.png')
+      triggerDownload(canvas.toDataURL('image/png'), `${filename}.png`)
       toast('Downloading QR Code', { type: 'success' })
     }
     img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgData)}`
@@ -63,7 +65,7 @@ export default function QRPreview({
     const svgData = getSvgMarkup()
     if (!svgData) return
     const blobUrl = URL.createObjectURL(new Blob([svgData], { type: 'image/svg+xml' }))
-    triggerDownload(blobUrl, 'qrcode.svg')
+    triggerDownload(blobUrl, `${filename}.svg`)
     URL.revokeObjectURL(blobUrl)
     toast('Downloading QR Code', { type: 'success' })
   }
@@ -72,7 +74,7 @@ export default function QRPreview({
     <section aria-label='QR code preview' className='card flex flex-col items-center gap-5'>
       <div className='flex w-full items-center justify-between'>
         <h2 className='section-title'>Preview</h2>
-        {url && (
+        {value && (
           <span className='text-xs text-neutral-500'>
             {size} x {size} px
           </span>
@@ -80,10 +82,10 @@ export default function QRPreview({
       </div>
 
       <div className='aspect-square w-full max-w-[280px]'>
-        {url ? (
+        {value ? (
           <div className='h-full w-full overflow-hidden rounded-xl shadow-lg shadow-black/40'>
             <QRCodeSvg
-              url={url}
+              value={value}
               svgRef={svgRef}
               size={size}
               fgColour={fgColour}
@@ -95,7 +97,7 @@ export default function QRPreview({
         ) : (
           <div className='flex h-full w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-neutral-800 p-6 text-center'>
             <MdQrCode2 className='text-neutral-700' size={72} />
-            <p className='text-sm text-neutral-500'>Enter a URL to generate your QR code</p>
+            <p className='text-sm text-neutral-500'>{placeholder}</p>
           </div>
         )}
       </div>
@@ -105,10 +107,10 @@ export default function QRPreview({
           label='Download PNG'
           icon={<MdOutlineFileDownload size={20} />}
           onClick={handleDownloadPng}
-          disable={!url}
+          disable={!value}
           fullWidth
         />
-        <Button label='SVG' variant='secondary' onClick={handleDownloadSvg} disable={!url} />
+        <Button label='SVG' variant='secondary' onClick={handleDownloadSvg} disable={!value} />
       </div>
     </section>
   )

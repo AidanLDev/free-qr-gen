@@ -14,7 +14,7 @@ const description =
   'Make a free QR code for your restaurant menu in 5 steps: put your menu online, add your logo and colours, test it and print it for your tables.'
 // Bump `updated` (and the sitemap entry) when the content changes
 const published = '2026-10-19'
-const updated = '2026-10-19'
+const updated = '2026-10-23'
 
 // Images live in /public/guides/restaurant-qr-code/
 const imageDir = '/guides/restaurant-qr-code'
@@ -397,6 +397,15 @@ export default function RestaurantMenuQRCodePage() {
         <li>
           <strong>Allergen and nutrition information</strong> on its own page, for guests who need
           the detail.
+        </li>
+        <li>
+          <strong>Guest WiFi.</strong> A <Link href='/wifi-qr-code-generator'>WiFi QR code</Link> on
+          each table lets diners join without asking for the password.
+        </li>
+        <li>
+          <strong>WhatsApp orders.</strong> A{' '}
+          <Link href='/whatsapp-qr-code-generator'>WhatsApp QR code</Link> on takeaway menus opens a
+          chat with you, ready to order.
         </li>
         <li>
           <strong>Feedback forms and loyalty sign-ups.</strong>

@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { IQrCodeSvgProps } from '@/app/types'
 
 export default function QRCodeSvg({
-  url,
+  value,
   size,
   bgColour,
   fgColour,
@@ -15,7 +15,7 @@ export default function QRCodeSvg({
     // Rendered at full size for download, scaled down to fit the preview
     <div ref={svgRef} className='h-full w-full'>
       <QRCodeSVG
-        value={url}
+        value={value}
         size={size || 128}
         bgColor={bgColour || '#ffffff'}
         fgColor={fgColour || '#000000'}

@@ -10,6 +10,8 @@ export default function TextArea({
   inputClassName,
   containerClassName,
   setFocus,
+  placeholder,
+  error,
 }: ITextAreaProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -41,7 +43,15 @@ export default function TextArea({
         onBlur={() => setFocus && setFocus(false)}
         id={id}
         rows={1}
+        placeholder={placeholder}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
       />
+      {error && (
+        <p id={`${id}-error`} className='field-warning'>
+          {error}
+        </p>
+      )}
     </div>
   )
 }

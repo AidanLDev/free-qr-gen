@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import { siteUrl } from './constants/constants'
 import Header from './components/Header'
 import HomeInfo from './components/HomeInfo'
+import QRTypeTabs from './components/QRTypeTabs'
 
 export const metadata: Metadata = {
   alternates: {
@@ -19,6 +20,7 @@ export default function Home() {
       <Header />
       <main className='mx-auto min-h-[75vh] w-full max-w-5xl pb-12 pt-8 sm:pb-24 sm:pt-10'>
         <JsonLd />
+        <QRTypeTabs active='url' />
         <div>
           <React.Suspense fallback={<div />}>
             <QRInfoForm />

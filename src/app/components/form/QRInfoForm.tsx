@@ -2,31 +2,43 @@
 
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import TextInput from '@/app/components/form/components/TextInput'
 import NumberInput from './components/NumberInput'
 import ColourInput from './components/ColourInput'
 import ErrorCorrectionPicker from './components/ErrorCorrectionPicker'
 import ImageUpload from './components/ImageUpload'
+import QRContentFields from './QRContentFields'
 import QRPreview from '../QRPreview'
-import { ErrorCorrectionLevel, IImageSettings } from '@/app/types'
-import { maxLogoFileSize, sizePresets, urlRegex } from '@/app/constants/constants'
+import { useQRStyle } from '../QRStyleProvider'
+import { IImageSettings, QrFieldValues, QrType } from '@/app/types'
+import { maxLogoFileSize, sizePresets } from '@/app/constants/constants'
 import { getColourContrast } from '@/app/lib/helpers'
+import { encodeQrValue } from '@/app/lib/qrPayloads'
+import { qrTypes } from '@/app/lib/qrTypes'
 
-export default function QRInfoForm() {
-  const [url, setUrl] = useState('')
-  const [urlFocused, setUrlFocused] = useState(false)
-  const [size, setSize] = useState(300)
-  const [backgroundColour, setBackgroundColour] = useState('#FFFFFF')
-  const [foregroundColour, setForegroundColour] = useState('#000000')
-  const [imgSrc, setImgSrc] = useState<string | undefined>(undefined)
-  const [imgWidth, setImgWidth] = useState(48)
-  const [imgHeight, setImgHeight] = useState(48)
-  const [errorCorrectionLevel, setErrorCorrectionLevel] = useState<ErrorCorrectionLevel>('M')
+// Past this many characters the code gets dense enough to struggle when printed small
+const denseValueLength = 300
 
-  const isUrlValid = urlRegex.test(url)
-  // Only nag about an invalid URL once the user has finished typing
-  const urlError =
-    url && !isUrlValid && !urlFocused ? 'Enter a valid URL, for example google.com' : undefined
+export default function QRInfoForm({ type = 'url' }: { type?: QrType }) {
+  const config = qrTypes[type]
+  const [values, setValues] = useState<QrFieldValues>(config.defaults ?? {})
+  const {
+    size,
+    setSize,
+    backgroundColour,
+    setBackgroundColour,
+    foregroundColour,
+    setForegroundColour,
+    imgSrc,
+    setImgSrc,
+    imgWidth,
+    setImgWidth,
+    imgHeight,
+    setImgHeight,
+    errorCorrectionLevel,
+    setErrorCorrectionLevel,
+  } = useQRStyle()
+
+  const qrValue = encodeQrValue(type, values) ?? undefined
 
   const contrast = getColourContrast(foregroundColour, backgroundColour)
   const colourWarning = !contrast
@@ -63,21 +75,20 @@ export default function QRInfoForm() {
   return (
     <div className='grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_320px] lg:grid-cols-[minmax(0,1fr)_360px]'>
       <section aria-label='QR code content' className='card'>
-        <TextInput
-          id='url-input'
-          label='QR Code URL'
-          value={url}
-          setValue={setUrl}
-          setFocus={setUrlFocused}
-          placeholder='e.g. google.com'
-          inputClassName='text-lg'
-          error={urlError}
-        />
+        <QRContentFields type={type} fields={config.fields} values={values} setValues={setValues} />
+        {qrValue && qrValue.length > denseValueLength && (
+          <p className='field-warning' role='status'>
+            That&apos;s a lot of content, so the code will be dense. Print it larger, or trim some
+            details, so phones can scan it easily.
+          </p>
+        )}
       </section>
 
       <div className='md:sticky md:top-6 md:col-start-2 md:row-span-2 md:row-start-1'>
         <QRPreview
-          url={isUrlValid ? url : undefined}
+          value={qrValue}
+          placeholder={config.previewPlaceholder}
+          filename={config.filename}
           size={size}
           fgColour={foregroundColour}
           bgColour={backgroundColour}

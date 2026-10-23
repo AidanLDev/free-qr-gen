@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
+import { IFaq, IStep } from '../types'
 
-const steps = [
+const homeSteps: IStep[] = [
   { title: 'Paste your link', body: 'Enter the web address you want your QR code to open.' },
   {
     title: 'Make it yours',
@@ -10,7 +11,7 @@ const steps = [
   { title: 'Download', body: 'Save it as a PNG or SVG at any size, ready to share or print.' },
 ]
 
-const faqs: { question: string; answer: React.ReactNode }[] = [
+export const homeFaqs: IFaq[] = [
   {
     question: 'Is this QR code generator really free?',
     answer:
@@ -18,8 +19,33 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
   },
   {
     question: 'Do the QR codes expire?',
-    answer:
-      'No. Your link is encoded directly into the QR code rather than sent through a redirect service, so it keeps working for as long as the page it points to exists.',
+    answer: (
+      <>
+        No. Your link is encoded directly into the QR code rather than sent through a redirect
+        service, so it keeps working for as long as the page it points to exists. If a code from
+        another site has stopped working, read{' '}
+        <Link href='/why-did-my-qr-code-stop-working'>why QR codes stop working</Link>.
+      </>
+    ),
+    text: 'No. Your link is encoded directly into the QR code rather than sent through a redirect service, so it keeps working for as long as the page it points to exists.',
+  },
+  {
+    question: 'What kinds of QR code can I make?',
+    answer: (
+      <>
+        As well as links, you can make QR codes that{' '}
+        <Link href='/wifi-qr-code-generator'>join a WiFi network</Link>,{' '}
+        <Link href='/vcard-qr-code-generator'>save a contact</Link>,{' '}
+        <Link href='/email-qr-code-generator'>send an email</Link>,{' '}
+        <Link href='/sms-qr-code-generator'>send a text</Link>,{' '}
+        <Link href='/phone-number-qr-code-generator'>call a number</Link>,{' '}
+        <Link href='/whatsapp-qr-code-generator'>start a WhatsApp chat</Link>,{' '}
+        <Link href='/text-qr-code-generator'>show some text</Link> or{' '}
+        <Link href='/location-qr-code-generator'>open a location in Google Maps</Link>. Pick a type
+        above the form.
+      </>
+    ),
+    text: 'As well as links, you can make QR codes that join a WiFi network, save a contact, send an email, send a text, call a number, start a WhatsApp chat, show some text or open a location in Google Maps.',
   },
   {
     question: 'Can I add my logo to a QR code?',
@@ -43,6 +69,7 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
         covers each step, from choosing a link to printing codes for your tables.
       </>
     ),
+    text: 'Yes. Put your menu online, paste the link above, then add your logo and brand colours. Our guide on how to make a QR code for your restaurant menu covers each step, from choosing a link to printing codes for your tables.',
   },
   {
     question: 'Can I track how many people scan my QR code?',
@@ -57,17 +84,29 @@ const faqs: { question: string; answer: React.ReactNode }[] = [
         the full story in <Link href='/what-is-a-qr-code'>What is a QR code?</Link>
       </>
     ),
+    text: 'A QR code is a two-dimensional barcode invented in 1994 by Masahiro Hara at Denso Wave.',
   },
 ]
 
-export default function HomeInfo() {
+export default function HomeInfo({
+  heading = 'How to create a free QR code',
+  steps = homeSteps,
+  faqs = homeFaqs,
+  children,
+}: {
+  heading?: string
+  steps?: IStep[]
+  faqs?: IFaq[]
+  // Extra sections between the steps and the FAQs
+  children?: React.ReactNode
+}) {
   return (
     <section
       aria-labelledby='how-it-works-heading'
       className='prose-page mx-auto w-full max-w-5xl pb-16 sm:pb-24'
     >
       <h2 id='how-it-works-heading' className='!mt-0'>
-        How to create a free QR code
+        {heading}
       </h2>
       <ol className='mb-12 grid gap-4 sm:grid-cols-3'>
         {steps.map(({ title, body }, i) => (
@@ -78,6 +117,8 @@ export default function HomeInfo() {
           </li>
         ))}
       </ol>
+
+      {children}
 
       <h2>Frequently asked questions</h2>
       <div className='divide-y divide-neutral-800 border-y border-neutral-800'>

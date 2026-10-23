@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     'QR code SVG',
     'QR code PNG',
     'no sign-up QR code',
+    'WiFi QR code generator',
+    'vCard QR code generator',
+    'contact QR code',
+    'WhatsApp QR code',
+    'QR code that never expires',
   ],
   openGraph: {
     title: siteTitle,

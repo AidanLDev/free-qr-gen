@@ -1,6 +1,17 @@
 import React from 'react'
 import { siteUrl } from '../constants/constants'
 import { ogImage, siteDescription, siteName } from '../lib/metadata'
+import { IFaq } from '../types'
+import { homeFaqs } from './HomeInfo'
+
+export const faqPageJsonLd = (faqs: IFaq[]) => ({
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ question, answer, text }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: text ?? answer },
+  })),
+})
 
 const homeJsonLd = {
   '@context': 'https://schema.org',
@@ -31,6 +42,7 @@ const homeJsonLd = {
       },
       featureList: [
         'Generate QR codes for any URL',
+        'WiFi, contact card (vCard), email, SMS, phone, WhatsApp, text and location QR codes',
         'Custom foreground and background colours',
         'Add a logo to the centre of the QR code',
         'Adjustable error correction level',
@@ -40,6 +52,7 @@ const homeJsonLd = {
       author: { '@type': 'Person', name: 'Aidan Lowson' },
       sameAs: ['https://github.com/AidanLDev/free-qr-gen'],
     },
+    faqPageJsonLd(homeFaqs),
   ],
 }
 
