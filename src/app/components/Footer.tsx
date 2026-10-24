@@ -9,6 +9,7 @@ import { qrTypeList } from '../lib/qrTypes'
 
 const guides = [
   { href: '/about', label: 'About' },
+  { href: '/guides', label: 'All guides' },
   { href: '/what-is-a-qr-code', label: 'What is a QR code?' },
   { href: '/qr-code-for-restaurant-menu', label: 'Restaurant menu QR codes' },
   { href: '/how-to-share-wifi-with-a-qr-code', label: 'Share WiFi with a QR code' },

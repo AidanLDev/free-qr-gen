@@ -4,16 +4,12 @@ import React from 'react'
 import ContentPage from '../components/ContentPage'
 import JsonLd, { faqPageJsonLd } from '../components/JsonLd'
 import { siteUrl } from '../constants/constants'
+import { getGuide } from '../lib/guides'
 import { ogImage, pageMetadata } from '../lib/metadata'
 
 const path = '/how-to-share-wifi-with-a-qr-code'
-// Kept under ~60 characters with the " | Free QR Gen" suffix so it isn't truncated in results
-const title = 'How to share your WiFi with a QR code'
-const description =
-  'Let guests join your WiFi by scanning a QR code. A step-by-step guide for homes, holiday lets, cafés and offices, with printing tips and how to keep your network safe.'
-// Bump `updated` (and the sitemap entry) when the content changes
-const published = '2026-10-23'
-const updated = '2026-10-23'
+// Title, description and dates live in lib/guides.ts
+const { title, description, published, updated } = getGuide(path)
 
 export const metadata = pageMetadata({ title, description, path, type: 'article' })
 

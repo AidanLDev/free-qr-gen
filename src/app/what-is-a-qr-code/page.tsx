@@ -3,16 +3,17 @@ import React from 'react'
 import ContentPage from '../components/ContentPage'
 import JsonLd from '../components/JsonLd'
 import { siteUrl } from '../constants/constants'
+import { getGuide } from '../lib/guides'
 import { pageMetadata } from '../lib/metadata'
 
-const title = 'What is a QR code? History, inventor and how they work'
-const description =
-  'Learn what a QR code is, how Masahiro Hara invented it at Denso Wave in 1994, how QR codes store data, and where to read and watch more.'
+const path = '/what-is-a-qr-code'
+// Title and description live in lib/guides.ts
+const { title, description } = getGuide(path)
 
 export const metadata = pageMetadata({
   title,
   description,
-  path: '/what-is-a-qr-code',
+  path,
   type: 'article',
 })
 
@@ -21,7 +22,7 @@ const articleJsonLd = {
   '@type': 'Article',
   headline: title,
   description,
-  url: `${siteUrl}/what-is-a-qr-code`,
+  url: `${siteUrl}${path}`,
   image: `${siteUrl}/FreeQRGenCoverImage.png`,
   author: { '@type': 'Person', name: 'Aidan Lowson' },
   publisher: { '@type': 'Organization', name: 'Free QR Gen', url: siteUrl },

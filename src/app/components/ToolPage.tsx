@@ -7,6 +7,7 @@ import JsonLd, { faqPageJsonLd } from './JsonLd'
 import QRTypeTabs from './QRTypeTabs'
 import QRInfoForm from './form/QRInfoForm'
 import { siteUrl } from '../constants/constants'
+import { guides } from '../lib/guides'
 import { pageMetadata, siteName } from '../lib/metadata'
 import { qrTypes } from '../lib/qrTypes'
 import { toolPageContent } from '../lib/toolPageContent'
@@ -22,8 +23,13 @@ export const toolPageMetadata = (type: ToolType) =>
   })
 
 export default function ToolPage({ type }: { type: ToolType }) {
-  const { name, stepsHeading, subtitle, description, steps, sections, faqs, related } =
-    toolPageContent[type]
+  const { name, stepsHeading, subtitle, description, steps, sections, faqs } = toolPageContent[type]
+  const related = [
+    ...toolPageContent[type].related,
+    ...guides
+      .filter(({ types }) => types.includes(type))
+      .map(({ path, hubLabel }) => ({ href: path, label: hubLabel })),
+  ]
   const url = `${siteUrl}${qrTypes[type].path}`
 
   const jsonLd = {

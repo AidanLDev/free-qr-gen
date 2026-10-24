@@ -4,16 +4,12 @@ import React from 'react'
 import ContentPage from '../components/ContentPage'
 import JsonLd, { faqPageJsonLd } from '../components/JsonLd'
 import { siteUrl } from '../constants/constants'
+import { getGuide } from '../lib/guides'
 import { ogImage, pageMetadata } from '../lib/metadata'
 
 const path = '/why-did-my-qr-code-stop-working'
-// Kept under ~60 characters with the " | Free QR Gen" suffix so it isn't truncated in results
-const title = 'QR code stopped working? 7 causes and fixes'
-const description =
-  'QR code not working any more? Find out why: expired free trials, dynamic codes, broken links and printing problems. Plus how to make a code that never expires.'
-// Bump `updated` (and the sitemap entry) when the content changes
-const published = '2026-10-23'
-const updated = '2026-10-23'
+// Title, description and dates live in lib/guides.ts
+const { title, description, published, updated } = getGuide(path)
 
 export const metadata = pageMetadata({ title, description, path, type: 'article' })
 

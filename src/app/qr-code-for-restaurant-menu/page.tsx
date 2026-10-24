@@ -5,16 +5,12 @@ import ArticleFigure from '../components/ArticleFigure'
 import ContentPage from '../components/ContentPage'
 import JsonLd from '../components/JsonLd'
 import { siteUrl } from '../constants/constants'
+import { getGuide } from '../lib/guides'
 import { pageMetadata } from '../lib/metadata'
 
 const path = '/qr-code-for-restaurant-menu'
-// Kept under ~60 characters with the " | Free QR Gen" suffix so it isn't truncated in results
-const title = 'How to make a QR code for your restaurant menu'
-const description =
-  'Make a free QR code for your restaurant menu in 5 steps: put your menu online, add your logo and colours, test it and print it for your tables.'
-// Bump `updated` (and the sitemap entry) when the content changes
-const published = '2026-10-19'
-const updated = '2026-10-23'
+// Title, description and dates live in lib/guides.ts
+const { title, description, published, updated } = getGuide(path)
 
 // Images live in /public/guides/restaurant-qr-code/
 const imageDir = '/guides/restaurant-qr-code'

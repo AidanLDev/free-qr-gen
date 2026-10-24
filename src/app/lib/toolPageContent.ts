@@ -12,6 +12,7 @@ export interface IToolPageContent {
   steps: IStep[]
   sections: { heading: string; intro?: string; items: { title: string; body: string }[] }[]
   faqs: IFaq[]
+  // Tool cross-links; guides listing this type are added automatically from lib/guides.ts
   related: { href: string; label: string }[]
 }
 
@@ -99,9 +100,7 @@ export const toolPageContent: Record<Exclude<QrType, 'url'>, IToolPageContent> =
           'Choose WPA / WPA2 / WPA3 for almost every modern router. Only choose WEP if your router is very old and set to WEP, and None if your network has no password.',
       },
     ],
-    related: [
-      { href: '/how-to-share-wifi-with-a-qr-code', label: 'How to share WiFi with a QR code' },
-    ],
+    related: [],
   },
   vcard: {
     title: 'vCard QR Code Generator: Free Contact QR',
