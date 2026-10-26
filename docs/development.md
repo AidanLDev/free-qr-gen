@@ -92,7 +92,7 @@ If you add, remove or upgrade a dependency, commit the updated `pnpm-lock.yaml`.
 `.claude/settings.json` holds shared permission rules for Claude Code agents working in this repo:
 
 - **Allowed without asking:** `pnpm install`, `lint`, `format`, `build`, the unit and E2E test scripts, and `git`.
-- **Always blocked:** `pnpm deploy`, `pnpm refresh`, running `sst` directly, and pushing to `main`. Bare `git push` and `git push … HEAD` are blocked too, because they push whatever branch is checked out, which could be `main`. Agents push with an explicit branch name instead, e.g. `git push -u origin feature/my-change`.
+- **Always blocked:** `pnpm deploy`, `pnpm refresh`, running `sst` directly, pushing to `main`, and merging pull requests with `gh pr merge` (a merge deploys, so a human merges). Bare `git push` and `git push … HEAD` are blocked too, because they push whatever branch is checked out, which could be `main`. Agents push with an explicit branch name instead, e.g. `git push -u origin feature/my-change`.
 
 These rules are a convenience, not a security boundary. A determined command can get around them, so `main` is also protected on GitHub. Put personal overrides in `.claude/settings.local.json`, which is git-ignored.
 
