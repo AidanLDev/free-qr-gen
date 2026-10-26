@@ -53,4 +53,4 @@ playwright-report/
 .env.sentry-build-plugin
 
 .vscode
-.claude
+.claude/settings.local.json

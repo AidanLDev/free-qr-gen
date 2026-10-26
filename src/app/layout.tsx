@@ -73,7 +73,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en-GB'>
+    // globals.css scrolls smoothly for in-page links; this tells Next to jump instantly on navigation
+    <html lang='en-GB' data-scroll-behavior='smooth'>
       <body className={`${inter.className} min-h-screen px-4 pb-6 antialiased sm:px-8`}>
         <Providers>
           <ToastContainer theme='dark' />

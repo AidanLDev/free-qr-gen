@@ -1,105 +1,85 @@
-# free-qr-gen
-
-**Live site: [freeqrgen.net](https://freeqrgen.net)**: create a free QR code with your own colours and logo. No sign-up, no watermarks.
-
-Generate and download QR codes quickly — a lightweight Next.js + TypeScript app (deployed with SST) that includes feedback and a newsletter subscription endpoint backed by AWS.
+# Free QR Gen
 
 [![License](https://img.shields.io/github/license/AidanLDev/free-qr-gen?style=flat-square)](./LICENSE) [![CI](https://github.com/AidanLDev/free-qr-gen/actions/workflows/ci.yml/badge.svg)](https://github.com/AidanLDev/free-qr-gen/actions)
 
-Quick links
+**[freeqrgen.net](https://freeqrgen.net)**: a free QR code generator with your own colours and logo. No sign-up, no watermarks, and codes that never expire.
 
-- Live site: https://freeqrgen.net
-- Source: repository root
-- Docs: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `LICENSE`
+QR codes are generated entirely in the browser. What you put in a code (including WiFi passwords) is never sent to a server, and there is no redirect link that can stop working.
 
-Features
+## Features
 
-- Generate customizable QR codes in the browser
-- Download SVG/PNG output
-- Feedback form that sends email via `nodemailer`
-- Newsletter subscribe endpoint (DynamoDB via `@aws-sdk/client-dynamodb`)
-- Support links (BuyMeACoffee and support page)
+- **Nine QR code types**, each with its own page: URL, WiFi, contact card (vCard), email, SMS, phone, WhatsApp, plain text and location
+- **Custom styling:** foreground and background colours, logo upload, error correction level and download size, with warnings when a choice might stop a code scanning
+- **PNG and SVG downloads** at any size
+- **Guides** on using QR codes for menus, business cards, pet tags, holiday lets and more
 
-Quick start
+## Tech stack
 
-1. Install dependencies (recommended: `pnpm`):
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS · [`qrcode.react`](https://github.com/zpao/qrcode.react) · deployed to AWS with [SST](https://sst.dev) · Sentry · Vitest · Playwright
+
+## Getting started
+
+You need Node.js 22 and pnpm 8 (`corepack enable` will pick up the pinned version).
 
 ```bash
 pnpm install
-```
-
-2. Run the dev server:
-
-```bash
 pnpm dev
 ```
 
-3. Build for production:
+Open http://localhost:3000.
 
-```bash
-pnpm build
+You don't need any environment variables to work on the generator or the content pages. They're only needed for the feedback form and Sentry: see [docs/development.md](docs/development.md#environment-variables).
+
+### Useful scripts
+
+| Command              | What it does                    |
+| -------------------- | ------------------------------- |
+| `pnpm dev`           | Start the dev server            |
+| `pnpm build`         | Production build                |
+| `pnpm lint`          | ESLint                          |
+| `pnpm typecheck`     | TypeScript check                |
+| `pnpm format`        | Format everything with Prettier |
+| `pnpm test`          | Run the Vitest unit tests       |
+| `pnpm test:e2e`      | Run the Playwright E2E tests    |
+| `pnpm test:e2e-open` | Playwright UI mode              |
+
+Merges to `main` deploy to production automatically once the tests pass. See [docs/deployment.md](docs/deployment.md).
+
+## Project structure
+
+```
+src/app/
+  page.tsx                  Home page (the URL generator)
+  <type>-qr-code-generator/ One page per QR type
+  <guide-slug>/             One page per guide
+  components/               UI, including the generator form and preview
+  lib/                      QR type config, payload encoders, guides, metadata
+  api/send-feedback/        Feedback form email route
+  **/*.test.ts(x)           Vitest unit tests, next to the code they cover
+tests/e2e/                  Playwright tests
+docs/                       Project documentation
+sst.config.ts               AWS infrastructure
 ```
 
-Environment variables
+## Documentation
 
-- `EMAIL_PASSWORD` — SMTP password used by the feedback route (set locally or in CI / hosting)
-- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION` — required for SST deploy and the subscribe route when using DynamoDB
-- `HOSTED_ZONE_ID` — if using hosted DNS configuration in SST
+Full docs are in [`docs/`](docs/README.md):
 
-Repository layout
+- [Architecture](docs/architecture.md): how the app fits together
+- [Development](docs/development.md): setup, env vars, scripts, code style
+- [Testing](docs/testing.md) and [Deployment](docs/deployment.md)
+- How-tos: [add a QR code type](docs/how-to/add-a-qr-type.md), [add a guide](docs/how-to/add-a-guide.md)
 
-- `src/app/` — Next.js app router pages and layout
-- `src/components/` — UI components including QR renderer
-- `src/api/` — API routes (feedback, subscribe)
-- `sst.config.ts` — SST deployment configuration
+## Contributing
 
-Contributing
-Please read `CONTRIBUTING.md` for how to contribute, branch naming, and PR guidance.
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [definition of done](docs/dod.md) before opening a pull request, and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-License
-This project is licensed under the MIT License — see the `LICENSE` file for details.
+## Security
 
-Contact & Support
+Please report security issues privately to dev@aidanlowson.com rather than in a public issue.
 
-- Author: Aidan Lowson — `dev@aidanlowson.com`
-- Support: BuyMeACoffee link is used in the app UI (see `src/components/BuyMeACoffeeButton`)
+## License
 
-Notes
+[MIT](LICENSE) © Aidan Lowson
 
-- The repo is currently configured with `private: true` in `package.json` to prevent accidental npm publishing. Remove or change this before publishing to the npm registry.
-  This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+QR Code is a registered trademark of DENSO WAVE INCORPORATED.

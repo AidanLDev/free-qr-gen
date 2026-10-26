@@ -18,11 +18,17 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install pnpm
-        run: npm i -g pnpm
+      # Same pnpm version as ci.yml, so CI installs dependencies exactly as the deploy will
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Unit tests
+        run: pnpm test
 
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium

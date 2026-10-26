@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm lint *)",
+      "Bash(pnpm format)",
+      "Bash(pnpm format *)",
+      "Bash(pnpm format:check)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm build)",
+      "Bash(pnpm test)",
+      "Bash(pnpm test *)",
+      "Bash(pnpm test:watch)",
+      "Bash(pnpm vitest *)",
+      "Bash(pnpm test:e2e)",
+      "Bash(pnpm test:e2e *)",
+      "Bash(PORT=* pnpm test:e2e)",
+      "Bash(PORT=* pnpm test:e2e *)",
+      "Bash(git *)"
+    ],
+    "deny": [
+      "Bash(pnpm deploy)",
+      "Bash(pnpm deploy *)",
+      "Bash(pnpm run deploy*)",
+      "Bash(pnpm refresh)",
+      "Bash(pnpm refresh *)",
+      "Bash(pnpm run refresh*)",
+      "Bash(npx sst *)",
+      "Bash(pnpm sst *)",
+      "Bash(pnpm exec sst *)",
+      "Bash(pnpm dlx sst *)",
+      "Bash(sst *)",
+      "Bash(git push)",
+      "Bash(git push * main)",
+      "Bash(git push * main *)",
+      "Bash(git push *:main)",
+      "Bash(git push *:main *)",
+      "Bash(git push *refs/heads/main*)",
+      "Bash(git push * HEAD)",
+      "Bash(git push * HEAD *)"
+    ]
+  }
+}

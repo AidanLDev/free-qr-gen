@@ -18,34 +18,28 @@ pnpm install
 pnpm dev
 ```
 
-Before opening a PR
+See [docs/development.md](docs/development.md) for all the scripts, and [docs/](docs/README.md) for how the project fits together.
 
-- Run linters: `pnpm lint`
-- Build locally: `pnpm build`
-- Make sure you do not commit secrets or credentials. Use environment variables for any secrets.
+Environment variables
 
-Environment variables (for local testing of all features)
-
-- `EMAIL_PASSWORD` — SMTP password for the feedback endpoint.
-- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION` — required for SST/DynamoDB features if you want to test subscription endpoints locally.
+You don't need any to work on the generator, tool pages or guides. `EMAIL_PASSWORD` (the SMTP password) is only needed to test the feedback form. The full list is in [docs/development.md](docs/development.md#environment-variables).
 
 Pull request process
 
-1. Open an issue describing the change (unless it is a small typo).
+1. Open an issue describing the change (unless it is a small typo). The feature template asks for acceptance criteria.
 2. Create a branch with a descriptive name and a clear commit history.
-3. Open a pull request describing what and why, with testing steps.
+3. Before opening the PR, run the same checks as CI:
 
-PR checklist
+   ```bash
+   pnpm format && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:e2e
+   ```
 
-- [ ] Linked issue (if applicable)
-- [ ] Linted (`pnpm lint`)
-- [ ] Build passes (`pnpm build`)
-- [ ] No secrets committed
-- [ ] Small, focused change with tests or manual steps to verify
+4. Open a pull request. The template walks you through the [definition of done](docs/dod.md), the checklist every change is held to.
 
 Code style and testing
 
-- The project uses the formatting rules in `package.json` `prettier` section. Please run your editor’s format on save or use Prettier manually.
+- Formatting rules are in `.prettierrc`. Please run your editor’s format on save, or `pnpm format`. A pre-commit hook formats staged files too.
+- Add or update unit tests next to the code you change (`Foo.tsx` → `Foo.test.tsx`). See [docs/testing.md](docs/testing.md).
 
 Security
 

@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Lint & Build
+    name: Lint, test & build
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,8 @@ jobs:
           version: 8
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        # Same flag as deploy.yml, so a lockfile that would fail the deploy fails the PR first
+        run: pnpm install --frozen-lockfile
 
       - name: Check formatting (Prettier)
         run: pnpm format:check
@@ -34,5 +35,17 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
       - name: Build
         run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: E2E tests
+        run: pnpm test:e2e
