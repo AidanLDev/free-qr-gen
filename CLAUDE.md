@@ -78,4 +78,4 @@ Update docs in the same change as the code:
 - Commit messages use Conventional Commits (`feat: …`, `fix: …`, `docs: …`). Commit as you go on your branch.
 - Push with an explicit branch name: `git push -u origin feature/my-change`. Bare `git push`, `git push … HEAD` and any push to `main` are blocked in `.claude/settings.json`.
 - Open a pull request with `gh pr create`, filling in `.github/PULL_REQUEST_TEMPLATE.md`. Say which definition-of-done items you checked and which you couldn't.
-- **Never merge a pull request.** Merging to `main` deploys to production, so a human merges.
+- **Never merge a pull request.** Merging to `main` deploys to production, so a human merges. `gh pr merge` is blocked in `.claude/settings.json`.

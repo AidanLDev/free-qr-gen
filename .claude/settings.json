@@ -39,7 +39,9 @@
       "Bash(git push *:main *)",
       "Bash(git push *refs/heads/main*)",
       "Bash(git push * HEAD)",
-      "Bash(git push * HEAD *)"
+      "Bash(git push * HEAD *)",
+      "Bash(gh pr merge)",
+      "Bash(gh pr merge *)"
     ]
   }
 }
