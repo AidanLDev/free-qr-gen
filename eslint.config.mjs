@@ -21,6 +21,24 @@ const config = [
 
     rules: {
       'react-compiler/react-compiler': 'error',
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: 'next/link',
+              importNames: ['default'],
+              message: "Import Link from '@/app/components/Link' so it drives the progress bar.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/app/components/Link.tsx'],
+    rules: {
+      'no-restricted-imports': 'off',
     },
   },
 ]

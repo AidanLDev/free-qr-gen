@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/app/components/Link'
 import React from 'react'
 import { qrTypeList } from '../lib/qrTypes'
 import { QrType } from '../types'

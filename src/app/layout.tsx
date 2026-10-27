@@ -5,6 +5,7 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Providers from './Providers'
+import { NavigationProgress } from './components/NavigationProgress'
 import { ToastContainer } from 'react-toastify'
 import { siteUrl } from './constants/constants'
 import { ogImage, siteDescription, siteName, siteTitle } from './lib/metadata'
@@ -76,6 +77,7 @@ export default function RootLayout({
     // globals.css scrolls smoothly for in-page links; this tells Next to jump instantly on navigation
     <html lang='en-GB' data-scroll-behavior='smooth'>
       <body className={`${inter.className} min-h-screen px-4 pb-6 antialiased sm:px-8`}>
+        <NavigationProgress />
         <Providers>
           <ToastContainer theme='dark' />
           {children}

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/app/components/Link'
 import React from 'react'
 import ContentPage from '../components/ContentPage'
 import JsonLd from '../components/JsonLd'

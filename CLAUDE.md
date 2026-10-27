@@ -63,6 +63,7 @@ Read [docs/architecture.md](docs/architecture.md) for the full picture.
 - Comments explain _why_, not _what_. Match the short, plain style in `lib/qrPayloads.ts`.
 - Shared Tailwind component classes (`card`, `input`, `field-label`, `field-hint`, `field-warning`, `section-title`) are in `src/app/globals.css`. Reuse them before adding new ones.
 - `@/` maps to `src/`.
+- Import `Link` from `@/app/components/Link`, not `next/link`, so slow navigations show the progress bar. ESLint enforces this.
 
 ## Docs
 

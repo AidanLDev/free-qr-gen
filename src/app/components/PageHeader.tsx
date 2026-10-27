@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import Link from '@/app/components/Link'
 import React from 'react'
 
 // Compact header for content pages; the home page uses the full <Header />
