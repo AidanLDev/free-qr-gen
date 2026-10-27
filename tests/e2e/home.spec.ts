@@ -38,3 +38,19 @@ test('footer links to the restaurant menu QR code guide', async ({ page }) => {
     }),
   ).toBeVisible()
 })
+
+test('shows the progress bar while a slow navigation is pending', async ({ page }) => {
+  await page.goto('/')
+  // Hold back the page data a client-side navigation fetches so the click stays pending
+  await page.route('**/about**', async (route) => {
+    if (route.request().headers()['rsc']) await new Promise((resolve) => setTimeout(resolve, 1500))
+    await route.continue()
+  })
+
+  const bar = page.getByTestId('navigation-progress')
+  await expect(bar).not.toHaveClass(/is-pending/)
+  await page.getByRole('contentinfo').getByRole('link', { name: 'About' }).click()
+  await expect(bar).toHaveClass(/is-pending/)
+  await expect(page).toHaveURL('/about')
+  await expect(bar).not.toHaveClass(/is-pending/)
+})

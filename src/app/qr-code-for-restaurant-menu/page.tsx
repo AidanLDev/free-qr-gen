@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns'
-import Link from 'next/link'
+import Link from '@/app/components/Link'
 import React from 'react'
 import ArticleFigure from '../components/ArticleFigure'
 import ContentPage from '../components/ContentPage'

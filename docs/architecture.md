@@ -96,6 +96,10 @@ The QR type tabs (`QRTypeTabs`) are real links to separate routes, not client-si
 
 `ToolPage` automatically links to every guide whose `types` list includes that tool's type, so adding a guide to `lib/guides.ts` updates the tool pages and the guides hub.
 
+### Navigation progress bar
+
+Internal links use `components/Link.tsx`, which wraps `next/link` and adds a `LinkPending` child. That child reads `useLinkStatus` and reports to `NavigationProgress`, a thin bar fixed to the top of the page (rendered in the root layout). The bar's styles in `globals.css` wait 150ms before fading it in, so navigations that are prefetched or quick never show it. ESLint blocks `import Link from 'next/link'` everywhere else.
+
 ## API
 
 ### `POST /api/send-feedback`

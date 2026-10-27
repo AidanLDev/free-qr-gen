@@ -34,3 +34,7 @@ The newsletter subscribe route was removed (commit `b0e4ba0`), but these remain:
 
 - **`/qr-code-for-restaurant-menu` doesn't use `GuidePage`**, so it builds its own layout and structured data. Moving it onto `GuidePage` would make it consistent with the other guides.
 - **The footer's "Resources" list is hard-coded** in `Footer.tsx`, separately from `lib/guides.ts`.
+
+## Performance
+
+- **Client-side navigations wait on Lambda.** CloudFront doesn't cache the RSC payloads that `<Link>` fetches (`x-cache: Miss`), so a click that beats prefetching waits 0.2–0.8s for the server function, longer on a cold start. The navigation progress bar covers this up; caching those responses at CloudFront would fix it.

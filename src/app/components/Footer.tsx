@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import FeedbackForm from './form/FeedbackForm'
 import { FaBug } from 'react-icons/fa'
 import { format } from 'date-fns'
-import Link from 'next/link'
+import Link from '@/app/components/Link'
 import { qrTypeList } from '../lib/qrTypes'
 
 const guides = [
