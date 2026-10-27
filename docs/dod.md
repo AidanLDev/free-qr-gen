@@ -17,6 +17,7 @@
 - Check FE changes at mobile and desktop widths
 - New env vars must be wired up correctly, via GitHub secrets, deploy.yml, sst.config.ts & docs/development.md
 - Add any shortcuts taken to docs/tech-debt.md
+- Written guide on how to use the new feature
 
 ## After merge
 
