@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   partialPrefetching: true,
+  async redirects() {
+    return [
+      // Guide images used to live in public/guides, which shadowed the /guides page on AWS
+      {
+        source: '/guides/:path+',
+        destination: '/guide-images/:path+',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default withSentryConfig(nextConfig, {

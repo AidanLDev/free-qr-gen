@@ -12,8 +12,8 @@ const path = '/qr-code-for-restaurant-menu'
 // Title, description and dates live in lib/guides.ts
 const { title, description, published, updated } = getGuide(path)
 
-// Images live in /public/guides/restaurant-qr-code/
-const imageDir = '/guides/restaurant-qr-code'
+// Images live in /public/guide-images/restaurant-qr-code/
+const imageDir = '/guide-images/restaurant-qr-code'
 
 const images = {
   hero: {
