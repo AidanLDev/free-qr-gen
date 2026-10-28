@@ -69,7 +69,7 @@ export default function GymQRCodePage() {
 
 ## 3. Images (optional)
 
-Put compressed `.webp` files in `public/guides/<guide-name>/` and show them with `ArticleFigure`, giving it real `width`/`height` and descriptive `alt` text. See `qr-code-for-restaurant-menu/page.tsx` for an example.
+Put compressed `.webp` files in `public/guide-images/<guide-name>/` and show them with `ArticleFigure`, giving it real `width`/`height` and descriptive `alt` text. See `qr-code-for-restaurant-menu/page.tsx` for an example.
 
 ## 4. Optional extras
 

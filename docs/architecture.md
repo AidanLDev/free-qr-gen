@@ -59,9 +59,11 @@ src/
     sitemap.ts, robots.ts, manifest.ts
   instrumentation*.ts         Sentry hooks
 tests/e2e/                    Playwright tests
-public/                       Static assets; guide images in public/guides/<guide>/
+public/                       Static assets; guide images in public/guide-images/<guide>/
 sst.config.ts                 Infrastructure (domain, env vars, IAM permissions)
 ```
+
+On AWS, CloudFront sends any request whose path starts with a top-level name in `public/` to the S3 asset bucket instead of the Next.js server. A `public/` folder must never share a name with a route: `public/guides/` once made `/guides` return S3's `AccessDenied`. A test in `lib/content.test.ts` checks for this.
 
 ## The QR code generator
 

@@ -55,5 +55,5 @@ Each guide should link to at least one generator in its body. `guides.spec.ts` c
 ## Images
 
 - Social share image: `public/FreeQRGenCoverImage.png`, set up in `lib/metadata.ts` as `ogImage`.
-- Guide images: `public/guides/<guide>/`, as `.webp`, shown with `ArticleFigure` (which sets `unoptimized` so images display correctly on the deployed site).
+- Guide images: `public/guide-images/<guide>/`, as `.webp`, shown with `ArticleFigure` (which sets `unoptimized` so images display correctly on the deployed site).
 - Always write descriptive `alt` text.

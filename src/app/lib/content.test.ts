@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { getGuide, guides } from './guides'
@@ -71,5 +71,18 @@ describe('guides', () => {
   it('getGuide finds a guide and throws for unknown paths', () => {
     expect(getGuide('/what-is-a-qr-code').hubLabel).toBe('What is a QR code?')
     expect(() => getGuide('/nope')).toThrow('No guide registered for /nope')
+  })
+})
+
+describe('public folder', () => {
+  // SST sends every top-level name in public/ to S3 by path prefix, so a folder sharing a
+  // route's name (public/guides vs /guides) makes that page return S3's AccessDenied
+  const publicNames = readdirSync(join(appDir, '..', '..', 'public'))
+  const routeNames = readdirSync(appDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map(({ name }) => name)
+
+  it.each(publicNames)('%s does not shadow a route', (name) => {
+    expect(routeNames.filter((route) => route.startsWith(name))).toEqual([])
   })
 })
